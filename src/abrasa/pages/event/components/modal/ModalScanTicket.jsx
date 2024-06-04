@@ -32,7 +32,9 @@ export const ModalScanTicket = () => {
         onScan={handleScan}
         style={{ width: '100%' }}
         constraints={{
-          facingMode: 'environment'
+          video: {
+            facingMode: 'environment'
+          }
         }}
       />
 
