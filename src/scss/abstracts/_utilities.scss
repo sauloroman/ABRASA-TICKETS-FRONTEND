@@ -1,0 +1,25 @@
+@use '../abstracts/variables' as v;
+
+.text-center {
+  text-align: center;
+}
+
+.text-wrong {
+  color: v.$color-error;
+}
+
+.text-strong {
+  font-weight: 700;
+}
+
+.border-wrong {
+  border-color: v.$color-error;;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mb-s {
+  margin-bottom: 1.6rem;
+}

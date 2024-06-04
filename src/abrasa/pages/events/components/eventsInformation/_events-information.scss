@@ -1,0 +1,146 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.events-information {
+
+  margin-bottom: 2rem;
+  width: 90%;
+  align-items: stretch;
+  @include m.flexLayout('none');
+  @include m.responsiveDesign('phone') {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  &__figure {
+    font-weight: 300;
+    width: 45rem;
+    background-color: #fff;
+    box-shadow: v.$shadow-df;
+    border: v.$border-df;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    margin-right: calc( v.$gap * 2 );
+    @include m.responsiveDesign('phone') {
+      width: 30rem;
+      margin-right: 0;
+      margin-bottom: 2rem
+    }
+
+    &-header {
+      @include m.flexLayout('space-between');
+    }
+
+    &-boxicon {
+      @include m.flexLayout('center');
+      width: 6rem;
+      height: 6rem;
+      margin-left: 1rem;
+      margin-top: -7rem;
+      background-color: v.$color-text-shade;
+      border-radius: 10px;
+      box-shadow: v.$shadow-df;
+    }
+
+    &-icon {
+      font-size: 3rem;
+      color: #fff;
+    }
+
+    &-category {
+      @include m.flexLayout('column-center');
+      gap: 0;
+      align-items: flex-end;
+    }
+
+    &-title {
+      color: v.$color-main-shade;
+      font-size: 1.4rem;
+    }
+
+    &-number {
+      margin-top: -10px;
+      font-weight: bold;
+      font-size: 3.2rem;
+    }
+
+    &-information {
+      padding: 1rem 0;
+      font-size: 1.4rem;
+      border-top: v.$border-df;
+
+      span {
+        font-weight: bold;
+        color: v.$color-brown;
+      }
+    }
+
+  }
+  
+  &__container {
+
+    width: 100%;
+    font-weight: 300;
+    background-color: #fff;
+    box-shadow: v.$shadow-df;
+    border: v.$border-df;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 1.4rem;
+
+    &-title {
+      color: v.$color-main;
+      font-family: v.$font-text;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      @include m.responsiveDesign('phone') {
+        padding: 1rem 0;
+        letter-spacing: 1px;
+      }
+    }
+
+  }
+
+  &__instru {
+    @include m.flexLayout('space-between');
+    @include m.responsiveDesign('phone') {
+      flex-direction: column;
+    }
+  }
+
+  &__list {
+    @include m.flexLayout('column');
+    align-items: flex-start;
+    @include m.responsiveDesign('phone') {  
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__item {
+    @include m.responsiveDesign('phone') {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__icon {
+    margin-right: 1.2rem;
+  }
+
+  &__buttons {
+    align-self: flex-end;
+    @include m.flexLayout('column');
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 2rem;
+      margin-right: .5rem;
+    }
+  }
+
+}

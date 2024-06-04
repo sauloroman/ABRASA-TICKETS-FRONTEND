@@ -1,0 +1,61 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.footer {
+  width: 100%;
+  background-color: v.$color-brown-tint;
+  padding: v.$gap;
+  margin-top: auto;
+
+  @include m.responsiveDesign('phone') {
+    padding: calc( v.$gap * 2 ) v.$gap;
+  }
+
+  &__container {
+    height: 100%;
+    @include m.flexLayout('space-between');
+    @include m.responsiveDesign('phone') {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  }
+
+  &__nav {
+    @include m.responsiveDesign('phone') {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__text {
+    font-size: 1.4rem;
+  }
+
+  &__copy {
+    font-size: 1.2rem;
+  }
+
+  &__list {
+    @include m.flexLayout('none');
+  }
+
+  &__item {
+    margin-right: 2rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    a {
+      color: v.$color-text-shade;
+      transition: all .4s ease-out;
+      font-size: 1.4rem;
+      padding-bottom: 1px;
+      border-bottom: 1px solid transparent;
+
+      &:hover {
+        border-color: currentColor;
+      }
+    }
+  }
+
+}

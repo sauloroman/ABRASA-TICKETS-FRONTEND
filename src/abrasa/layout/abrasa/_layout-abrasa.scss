@@ -1,0 +1,21 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.layout-abrasa {  
+  height: 100vh;
+  margin-left: 30rem;
+
+  @include m.responsiveDesign('phone') {
+    margin-left: 0;
+  }
+
+  &__flex {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  &__container {
+    margin-bottom: calc( v.$gap * 4 );
+  }
+}

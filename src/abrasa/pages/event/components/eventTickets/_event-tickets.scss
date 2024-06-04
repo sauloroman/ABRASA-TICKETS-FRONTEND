@@ -1,0 +1,89 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.event-tickets {
+  flex-basis: 40%;
+  border: v.$border-df;
+  padding: calc( v.$gap * 2 );
+  border-radius: 10px;
+  box-shadow: v.$shadow-df;
+  background-color: #fff;  
+  @include m.flexLayout('column');
+  align-items: flex-start;
+  @include m.responsiveDesign('phone') {
+    width: 100%;
+  }
+  
+  &__header {
+    width: 100%;
+    @include m.flexLayout('space-between');
+    margin-bottom: 1.2rem;
+  }
+  
+  &__title {
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+    color: v.$color-main;
+    font-family: v.$font-text;
+    text-transform: uppercase;
+    @include m.responsiveDesign('phone') {
+      letter-spacing: 1px;
+    }
+  }
+  
+  &__figure {
+    img {
+      width: 15rem;
+      @include m.responsiveDesign('phone') {
+        width: 12rem;
+      }
+    }
+  }
+
+  &__instru {
+    margin-bottom: calc( v.$gap * 3 );
+  }
+  
+  &__item {
+    font-size: 1.4rem;
+    @include m.flexLayout('none');
+  }
+  
+  &__buttons {
+    width: 100%;
+    margin-top: auto;
+    @include m.flexLayout('none');
+    justify-content: flex-end;
+    @include m.responsiveDesign('phone') {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+
+  &__button {
+    font-size: 1.4rem;
+    width: fit-content;
+    margin-right: 1.6rem;
+    @include m.flexLayout('none');
+    @include m.responsiveDesign('phone') {
+      width: 100%;
+      justify-content: center;
+      margin-right: 0;
+
+      &:nth-child(1) {
+        margin-bottom: 2rem;
+      }
+ 
+    }
+    
+    &:nth-child(2) {
+      margin-right: 0;
+    }
+  }
+
+  &__iconButton {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+
+}

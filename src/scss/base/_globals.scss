@@ -1,0 +1,62 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: v.$color-white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+a:link, a:visited {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 1.2rem;
+  @include m.responsiveDesign('phone') {
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+ul, ol, dl {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+label {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

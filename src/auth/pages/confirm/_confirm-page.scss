@@ -1,0 +1,35 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.confirm-page {
+  
+  &__form {
+    width: 80%;
+  }
+  
+  &__grid {
+    @include m.gridLayout('none', 1.2rem, 5 );
+  }
+
+  &__box {
+    width: 10rem;
+    height: 10rem;
+    border: v.$border-df;
+    text-align: center;
+    outline: none;
+    font-size: 3.2rem;
+    @include m.responsiveDesign('phone') {
+      width: 7rem;
+      height: 7rem;
+    }
+    
+    &::placeholder {
+      font-size: 3.2rem;
+    }
+  }
+
+  &__button {
+    margin-top: v.$gap;
+  }
+
+}

@@ -1,0 +1,70 @@
+@use '.../../../../../../../scss/abstracts/variables' as v;
+@use '.../../../../../../../scss/abstracts/mixins' as m;
+
+.events-header {
+  background-color: #fff;
+  border: v.$border-df;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
+  width: 100%;
+  @include m.flexLayout('space-between');
+  @include m.responsiveDesign('phone') {
+    flex-direction: column;
+  }
+
+  &__information {
+    @include m.flexLayout('none');
+    @include m.responsiveDesign('phone') {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    color: v.$color-main;
+    margin-left: 2rem;
+    font-family: v.$font-text;
+    font-size: 2rem;
+    @include m.responsiveDesign('phone') {
+      letter-spacing: 1px;
+    }
+  }
+
+  &__icon {
+    color: inherit;
+    font-size: 3rem;
+  }
+
+}
+
+.events-navigation {
+
+  &__list {
+    @include m.flexLayout('none');
+    @include m.responsiveDesign('phone') {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  &__item {
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-right: calc( v.$gap * 2 );
+    transition: all .4s ease;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid transparent;
+
+    &--selected {
+      background-color: v.$color-main;
+      color: #fff;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      border-color: currentColor;
+    }
+  }
+}

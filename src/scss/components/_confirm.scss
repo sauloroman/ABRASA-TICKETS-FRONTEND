@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.confirm {
+
+  padding: v.$gap;
+
+  &__question {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: calc( v.$gap * 2 );
+  }
+
+  &__buttons {
+    @include m.flexLayout('none');
+  }
+
+  &__button {
+    margin-right: 1.6rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+}

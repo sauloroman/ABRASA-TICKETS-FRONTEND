@@ -1,0 +1,37 @@
+// PAGES STYLES
+@forward './pages/event/event';
+
+@forward './pages/events/events';
+
+@forward './layout/modal/layout-modal';
+@forward './layout/abrasa/layout-abrasa';
+@forward './layout/abrasa/components/navigation/navigation';
+@forward './layout/abrasa/components/footer/footer';
+
+@forward './pages/profile/profile';
+@forward './pages/profile/components/profileCover/profile-cover';
+@forward './pages/profile/components/profileHeader/profile-header';
+@forward './pages/profile/components/profileInformation/profile-information';
+@forward './pages/profile/components/profileSocial/profile-social';
+
+@forward './pages/events/events';
+@forward './pages/events/components/eventsHeader/events-header';
+@forward './pages/events/components/eventsBanner/events-banner';
+@forward './pages/events/components/eventsInformation/events-information';
+@forward './pages/events/components/eventsList/events-list';
+@forward './pages/events/components/eventsCard/events-card';
+@forward './pages/events/components/eventsPagination/events-pagination';
+@forward './pages/events/components/eventsListDefault/events-list-default';
+
+@forward './pages/event/event';
+@forward './pages/event/components/eventCover/event-cover';
+@forward './pages/event/components/eventInformation/event-information';
+@forward './pages/event/components/eventTickets/event-tickets';
+@forward './pages/event/components/eventTable/event-table';
+@forward './pages/event/components/eventStats/event-stats';
+
+@forward './pages/scanTicket/scanTicket';
+@forward './pages/scanTicket/components/scanTicketInfo/scanTicket-info';
+@forward './pages/scanTicket/components/scanTicketForm/scanTicket-form';
+
+@forward './pages/stadistics/stadistics';

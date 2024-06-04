@@ -1,0 +1,38 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.events-pagination {
+
+  justify-content: flex-end;
+  @include m.flexLayout('none');
+  @include m.responsiveDesign('phone') {
+    justify-content: center;
+  }
+
+  &__pages {
+    @include m.flexLayout('none');
+  }
+
+  &__button {
+    cursor: pointer;
+    background-color: v.$color-main;
+    width: 3rem;
+    height: 3rem;
+    @include m.flexLayout('center');
+  }
+
+  &__icon {
+    font-weight: 500;
+    color: #fff;
+  }
+
+  &__number {
+    padding: 0 1.5rem;
+    border: v.$border-df;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin: 0 calc( v.$gap * 2 );
+  }
+
+
+}

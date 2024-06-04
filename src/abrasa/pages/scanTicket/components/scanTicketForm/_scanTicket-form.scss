@@ -1,0 +1,46 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.scanTicket-form {
+  &__header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: v.$border-df;
+  }
+
+  &__title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    list-style: circle;
+    margin: 2rem;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+
+    @include m.responsiveDesign('phone') {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.scanTicket-form .form {
+  margin-top: 2rem;
+  width: 100%;
+
+  &__btn {
+    font-size: 1.4rem;
+  }
+
+  &__label {
+    @include m.responsiveDesign('phone') {
+      font-size: 1.6rem;
+    }
+  }
+}

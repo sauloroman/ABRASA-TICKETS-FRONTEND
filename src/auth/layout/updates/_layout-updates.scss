@@ -1,0 +1,65 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.layout-updates {
+
+  background-color: v.$color-main;
+  height: 100vh;
+  width: 100%;
+  @include m.flexLayout('column-center');
+  
+  &__figure {
+    margin-bottom: v.$gap;
+  }
+
+  &__image {
+    width: 20rem;
+  }
+
+  &__container {
+    border-radius: 5px;
+    padding: calc( v.$gap * 3) calc( v.$gap * 2);
+    background-color: #fff;
+    width: 80rem;
+    max-width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    @include m.flexLayout('column-center');
+  }
+
+  &__header {
+    padding: 0 calc( v.$gap * 3 );
+    @include m.flexLayout('column-center');
+    margin-bottom: calc( v.$gap * 2 );
+  }
+  
+  &__title {
+    margin-bottom: calc( v.$gap );
+  }
+  
+  &__form {
+    width: 80%;
+  }
+  
+  &__grid {
+    @include m.gridLayout('none', 1.2rem, 5 );
+  }
+
+  &__box {
+    width: 10rem;
+    height: 10rem;
+    border: v.$border-df;
+    text-align: center;
+    outline: none;
+    font-size: 3.2rem;
+    
+    &::placeholder {
+      font-size: 3.2rem;
+    }
+  }
+
+  &__button {
+    margin-top: v.$gap;
+  }
+
+}

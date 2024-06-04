@@ -1,0 +1,126 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.events-card {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: v.$shadow-df;
+  border-radius: 10px;
+  border: v.$border-df;
+  margin-bottom: 6rem;
+  @include m.responsiveDesign('phone') {
+    margin-bottom: 4rem;
+  }
+
+  &__figure {
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 10px;
+    height: 15rem;
+    margin-top: -25px;
+    @include m.flexLayout('center');
+    @include m.responsiveDesign('phone') {
+      height: 25rem;
+    }
+  }
+  
+  &__image {
+    border: v.$border-df;
+    border-radius: 10px;
+    width: 90%;
+  }
+  
+  
+  &__defaultImage {
+    border-radius: 10px;
+    width: 90%;
+    height: 100%;
+    background: #12c2e9; 
+    background: -webkit-linear-gradient(to left, #f64f59, #c471ed, #12c2e9); 
+    background: linear-gradient(to left, #f64f59, #c471ed, #12c2e9); 
+  }
+
+  &__container {
+    padding: 1rem;
+    font-weight: 300;
+    font-size: 1.4rem;
+  }
+
+  &__header {
+    margin-bottom: 1.2rem;
+    @include m.flexLayout('space-between');
+    @include m.responsiveDesign('phone') {
+      padding: 1rem 0;
+      flex-direction: column;
+    }
+  }
+
+  &__tag {
+    display: inline-block;
+    border-radius: 100px;
+    padding: 0 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    background-color: v.$color-brown;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    font-family: v.$font-heading;
+    @include m.responsiveDesign('phone') {
+      text-align: center;
+      margin-top: 1.2rem;
+    }
+  }
+
+  &__descr {
+    font-size: 1.2rem;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 1.2rem;
+    @include m.responsiveDesign('phone') {
+      display: none;
+    }
+  }
+
+  &__footer {
+    padding: 1rem 0;
+    margin: 0 auto;
+    width: 90%;
+    border-top: v.$border-df;
+    font-size: 1.2rem;
+    @include m.flexLayout('space-between');
+    @include m.responsiveDesign('phone') {
+      padding: 2rem 0;
+    }
+
+    &-buttons {
+      @include m.flexLayout('none');
+    }
+    
+    button {
+      height: 3rem;
+      @include m.responsiveDesign('phone') {
+        height: 4rem;
+      }
+    }
+  }
+  
+  &__button {
+    height: 3rem;
+    width: fit-content;
+    font-size: 1.2rem;
+    padding: .3rem .5rem;
+    margin-right: 1.2rem;
+    
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__date {
+    font-weight: 500;
+  }
+
+}

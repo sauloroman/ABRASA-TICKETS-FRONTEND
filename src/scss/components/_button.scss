@@ -1,0 +1,86 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.btn {
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  width: 100%;
+  display: block;
+  padding: 0.9rem;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  @include m.responsiveDesign('phone') {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+
+  &--black {
+    text-align: center;
+    background-color: v.$color-red-shade;
+    color: #fff;
+
+    &:hover {
+      border-color: v.$color-red-shade;
+      color: v.$color-red-shade;
+      background-color: #fff;
+    }
+  }
+
+  &--white {
+    border: v.$border-df;
+    background-color: v.$color-light-tint;
+  }
+
+  &--success {
+    background-color: v.$color-success;
+    color: v.$color-white;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: v.$color-white;
+      border-color: v.$color-success;
+      color: v.$color-success;
+    }
+  }
+
+  &--error {
+    background-color: v.$color-error;
+    color: v.$color-white;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: v.$color-white;
+      border-color: v.$color-error;
+      color: v.$color-error;
+    }
+  }
+
+  &--outline {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: v.$color-main;
+    border-color: v.$color-main;
+    background-color: #fff;
+
+    &:hover {
+      background-color: v.$color-main;
+      color: #fff;
+    }
+  }
+
+  &--dark {
+    background-color: v.$color-text;
+    color: #fff;
+  }
+
+  &--table {
+    padding: 0.6rem;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: v.$color-red;
+    }
+  }
+}

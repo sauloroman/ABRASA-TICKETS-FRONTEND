@@ -1,0 +1,117 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.profile-information {
+  height: 100%;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .15);
+  padding: v.$gap;
+  border: 1px solid #eee;
+  @include m.responsiveDesign('phone') {
+    padding: calc( v.$gap * 2 ) v.$gap;
+  }
+
+  &__header {
+    margin-bottom: v.$gap;
+    @include m.flexLayout('space-between');
+    @include m.responsiveDesign('phone') {
+      width: 100%;
+      flex-direction: column;
+      margin-bottom: calc( v.$gap * 2 );
+    }
+     
+    &-title {
+      flex: 3;
+      letter-spacing: 1px;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      color: v.$color-main;
+      @include m.responsiveDesign('phone') {
+        text-align: center;
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    &-button {
+      flex: 1;
+      font-weight: 500;
+      @include m.flexLayout('center');
+      @include m.responsiveDesign('phone') {
+        width: fit-content;
+      }
+    }
+
+    &-icon {
+      margin-right: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  &__user, &__contact {
+    padding: 0 calc( v.$gap * 2 );
+    margin-bottom: v.$gap;
+    @include m.responsiveDesign('phone') {
+      padding: v.$gap;
+    }
+  }
+
+  &__contact &__item {
+    &:nth-child(1) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__sectionTitle {
+    color: v.$color-main;
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: v.$gap;
+    text-transform: uppercase;
+  }
+  
+  &__grid {
+
+    row-gap: 1.2rem;
+
+    &--1 {
+      @include m.gridLayout('none', 2rem, 2 );
+      @include m.responsiveDesign('phone') {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &__item {
+    
+    width: 100%;
+    
+    &-title {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: .5rem;
+    }
+
+    &-value {
+      font-size: 1.4rem;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      padding: .3rem 1rem;
+    }
+
+  }
+
+  &__logo {
+    @include m.flexLayout('none');
+    justify-content: flex-end;
+    margin-top: 2.4rem;
+
+    img {
+      width: 15rem;
+    }
+  }
+
+}

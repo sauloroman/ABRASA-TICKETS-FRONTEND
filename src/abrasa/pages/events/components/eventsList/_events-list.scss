@@ -1,0 +1,12 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.events-list {
+  margin-top: calc( v.$gap * 3 );
+  margin-bottom: calc( v.$gap * 6 );
+  row-gap: calc( v.$gap * 4 );
+  @include m.gridLayout('none', calc( v.$gap * 2 ), 3);
+  @include m.responsiveDesign('phone') {
+    grid-template-columns: 1fr;
+  }
+}

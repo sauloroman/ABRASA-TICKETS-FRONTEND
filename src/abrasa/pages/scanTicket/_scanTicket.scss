@@ -1,0 +1,57 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.scanTicket {
+  padding: 5rem 0;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  @include m.responsiveDesign('phone') {
+    padding: 8rem 0;
+  }
+
+  &__header {
+    margin-bottom: 2rem;
+    @include m.responsiveDesign('phone') {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__return {
+    max-width: 20rem;
+    font-size: 1.4rem;
+    @include m.responsiveDesign('phone') {
+      max-width: 30rem;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__grid {
+    @include m.gridLayout('none', calc(v.$gap * 2), 3);
+    @include m.responsiveDesign('phone') {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 95%;
+      margin: 0 auto;
+    }
+    place-items: unset;
+
+    & > div {
+      width: 100%;
+      border: v.$border-df;
+      padding: calc(v.$gap * 2);
+      border-radius: 10px;
+      box-shadow: v.$shadow-df;
+      background-color: #fff;
+    }
+
+    :nth-child(1) {
+      grid-column: 1 / 2;
+    }
+
+    :nth-child(2) {
+      grid-column: 2 / 4;
+    }
+  }
+}

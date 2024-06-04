@@ -1,0 +1,94 @@
+@use '../../../../../scss/abstracts/variables' as v;
+@use '../../../../../scss/abstracts/mixins' as m;
+
+.scanTicket-info {
+  &__figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    width: 70%;
+    @include m.responsiveDesign('phone') {
+      width: 50%;
+    }
+  }
+
+  &__header {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-bottom: v.$border-df;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    text-align: center;
+    color: v.$color-main;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    @include m.responsiveDesign('phone') {
+      font-size: 2rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__id {
+    font-weight: 500;
+    margin-bottom: 1rem;
+
+    @include m.responsiveDesign('phone') {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+    color: v.$color-main;
+    font-weight: 600;
+    font-size: 1.4rem;
+
+    @include m.responsiveDesign('phone') {
+      font-size: 2rem;
+    }
+
+    span {
+      color: v.$color-text;
+      font-weight: 400;
+    }
+  }
+
+  &__box {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__quantity {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 1rem;
+    border: v.$border-df;
+    border-radius: 10px;
+
+    p {
+      font-size: 1.2rem;
+
+      @include m.responsiveDesign('phone') {
+        font-size: 1.6rem;
+      }
+    }
+
+    span {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+}

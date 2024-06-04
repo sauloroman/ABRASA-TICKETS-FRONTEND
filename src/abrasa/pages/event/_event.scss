@@ -1,0 +1,30 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.event {
+  
+  padding: v.$gap;
+
+  &__header {
+    position: relative;
+    margin: 0 auto;
+    margin-top: -20rem;
+    margin-bottom: 3.2rem;
+    width: 90%;
+    @include m.flexLayout('space-between', calc( v.$gap * 2 ) );
+    @include m.responsiveDesign('phone') {
+      margin-top: -10rem;
+      flex-direction: column;
+    }
+  }
+
+  &__table {
+    width: 90%;
+    margin: 0 auto;
+    @include m.responsiveDesign('phone') {
+      width: 100%;
+    }
+  }
+
+} 
+
