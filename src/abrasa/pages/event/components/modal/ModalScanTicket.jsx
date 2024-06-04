@@ -31,6 +31,9 @@ export const ModalScanTicket = () => {
         onError={handleError}
         onScan={handleScan}
         style={{ width: '100%' }}
+        constraints={{
+          facingMode: 'environment'
+        }}
       />
 
       {scannedResult.id && (
