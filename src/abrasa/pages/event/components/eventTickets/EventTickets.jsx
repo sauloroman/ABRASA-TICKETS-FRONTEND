@@ -15,11 +15,11 @@ export const EventTickets = () => {
       </header>
       <ul className="event-tickets__instru">
         <li className='event-tickets__item'>
-          <i class='bx bx-check-circle events-information__icon' ></i>
+          <i className='bx bx-check-circle events-information__icon' ></i>
           <p>Crea un invitado</p>
         </li>
         <li className='event-tickets__item'>
-          <i class='bx bx-check-circle events-information__icon' ></i>
+          <i className='bx bx-check-circle events-information__icon' ></i>
           <p>Asigna a cada invitado la cantidad de boletos</p>
         </li>
       </ul>

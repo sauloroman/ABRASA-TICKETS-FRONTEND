@@ -1,11 +1,14 @@
-import { useTickets } from '../../../../hooks';
+import { useRef, useState } from 'react';
+import { useEvents, useTickets } from '../../../../hooks';
 import { EventPagination } from '../';
 import { EventStats } from '../eventStats/EventStats';
 import { useUI } from '../../../../../hooks';
 
 export const EventTable = () => {
+
   const { tickets } = useTickets();
   const { openModal } = useUI();
+  const { event } = useEvents();
 
   return (
     <div className="event-table">
@@ -66,33 +69,24 @@ export const EventTable = () => {
                   </a>
                 </td>
                 <td className="event-table__td ">
-                  <a
-                    target="_blank"
-                    className="event-table__tlink"
-                    href={`https://wa.me/${ticket.phone}?text=Hola ${
-                      ticket.name
-                    }. Aqui tienes tu invitación para tu evento.${'\n'} Tu clave de acceso es: ${
-                      ticket.keyPass
-                    }`}
-                  >
+                  <a 
+                    className='event-table__tlink' 
+                    target='_blank' 
+                    href={`https://wa.me/${ticket.phone}?text=Hola ${ticket.name}. El equipo de las Brasas te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A Invitación web: https://cbtis280-graduation.netlify.app %0A Clave de acceso: ${ ticket.keyPass } %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥. %0A Si deseas comprar más boletos, comunicate al número 4496548073 o 4499198188.` }>
                     <i
                       title="Enviar Boleto"
-                      class="bx bx-send  event-table__ticon"
+                      className="bx bx-send  event-table__ticon"
                     ></i>
                   </a>
                   <i
-                    onClick={() =>
-                      openModal('eventPageModal', 'updateTicket', ticket)
-                    }
+                    onClick={() => openModal('eventPageModal', 'updateTicket', ticket)}
                     title="Editar Boleto"
-                    class="bx bx-edit  event-table__ticon"
+                    className="bx bx-edit  event-table__ticon"z
                   ></i>
                   <i
-                    onClick={() =>
-                      openModal('confirmModal', 'deleteTicket', ticket.id)
-                    }
+                    onClick={() => openModal('confirmModal', 'deleteTicket', ticket.id)}
                     title="Eliminar Boleto"
-                    class="bx bx-trash  event-table__ticon"
+                    className="bx bx-trash  event-table__ticon"
                   ></i>
                 </td>
               </tr>
@@ -100,7 +94,7 @@ export const EventTable = () => {
           </tbody>
         </table>
       </div>
-      {tickets.length ? <EventPagination /> : <></>}
+      {tickets.length && <EventPagination /> }
     </div>
   );
 };
