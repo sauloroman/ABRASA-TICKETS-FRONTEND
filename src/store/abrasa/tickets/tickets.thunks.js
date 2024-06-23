@@ -9,6 +9,28 @@ import {
   setTotalKids,
 } from './tickets.slice';
 
+export const startGettingAllTickets = () => {
+  return async ( dispatch ) => {
+    dispatch(setIsLoading(true));
+    try {
+      const { data } = await abrasaApi.get('/tickets');
+      
+      const tickets = data.filter( ticket => ticket.event === '665f6abc56f0eba46bf4b646');
+      const total = tickets.length;
+      const adultsQuantity = tickets.reduce( (acc, ticket) => ticket.adultsQuantity + acc,0);
+      const kidsQuantity = tickets.reduce( (acc, ticket) => ticket.kidsQuantity + acc,0);
+      
+      dispatch( setTickets(tickets ) );
+      dispatch(setTotal(total));
+      dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalKids(kidsQuantity));
+    } catch (error) {
+      console.log(error);
+    }
+    dispatch(setIsLoading(false));
+  }
+}
+
 export const startGettingTicketsOfEvent = ({
   eventID = '',
   page: pageUser,

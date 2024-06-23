@@ -94,7 +94,7 @@ export const EventTable = () => {
           </tbody>
         </table>
       </div>
-      {tickets.length && <EventPagination /> }
+      {/* {tickets.length && <EventPagination /> } */}
     </div>
   );
 };

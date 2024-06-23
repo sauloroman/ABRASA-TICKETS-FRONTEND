@@ -3,6 +3,7 @@ import {
   startCreatingTicket,
   startDeletingAllTicketsOfEvent,
   startDeletingTicketById,
+  startGettingAllTickets,
   startGettingTicketById,
   startGettingTicketsOfEvent,
   startUpdatingTicket,
@@ -14,8 +15,12 @@ import {
 
 export const useTickets = () => {
   const dispatch = useDispatch();
-  const { tickets, page, total, totalPages, totalAdults, totalKids } =
-    useSelector((store) => store.tickets);
+
+  const { tickets, page, total, totalPages, totalAdults, totalKids } = useSelector((store) => store.tickets);
+
+  const getAllTickets = () => {
+    dispatch( startGettingAllTickets() );
+  }
 
   const getTicketsByEvent = (config = {}) => {
     dispatch(startGettingTicketsOfEvent(config));
@@ -70,6 +75,7 @@ export const useTickets = () => {
     totalKids,
 
     // METHODS
+    getAllTickets,
     getTicketsByEvent,
     getTicketById,
     createTicket,

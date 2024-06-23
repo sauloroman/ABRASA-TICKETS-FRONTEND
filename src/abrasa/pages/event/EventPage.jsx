@@ -9,31 +9,33 @@ export const EventPage = () => {
 
   const { id } = useParams();
   const { getEvent } = useEvents();
-  const { getTicketsByEvent, tickets, getTotalPages, page } = useTickets();
+  const { getTicketsByEvent, getAllTickets, tickets, getTotalPages, page } = useTickets();
   const { eventPageModal, confirmModal } = useUI();
 
   useEffect(() => {
     getEvent( id );
-    getTicketsByEvent( {
-      eventID: id, 
-      page: 1, 
-      limit: 15
-    });
+    getAllTickets();
+    // getTicketsByEvent( {
+    //   eventID: id, 
+    //   page: 1, 
+    //   limit: 15
+    // });
+
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   getAllTickets();
+    // getTicketsByEvent( {
+    //   eventID: id, 
+    //   page: page, 
+    //   limit: 15
+    // });
 
-    getTicketsByEvent( {
-      eventID: id, 
-      page: page, 
-      limit: 15
-    });
+  // }, [ page ]);
 
-  }, [ page ]);
-
-  useEffect(() => {
-    getTotalPages();
-  }, [tickets])
+  // useEffect(() => {
+  //   getTotalPages();
+  // }, [tickets])
 
   return (
     <LayoutAbrasa>
