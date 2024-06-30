@@ -7,6 +7,8 @@ const formValidations = {
   newPhone: [ value => value.length > 0 && value.length < 11, 'Numero de teléfono no válido'],
   newAdultsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   newKidsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
+  newKeyPass: [ value => value.length >= 4, 'La clave debe de ser mínimo 4 letras'],
+  newTable: [ value => value > 0, 'El numero de mesa debe ser mayor que 0'],
 }
 
 export const ModalUpdateTicket = () => {
@@ -17,14 +19,16 @@ export const ModalUpdateTicket = () => {
   const { updateTicket } = useTickets();
 
   const {
-    newName, newPhone, newAdultsQuantity, newKidsQuantity, formState,
-    newNameValid, newPhoneValid, newAdultsQuantityValid, newKidsQuantityValid,
+    newName, newPhone, newAdultsQuantity, newKidsQuantity, newKeyPass, newTable, formState,
+    newNameValid, newPhoneValid, newAdultsQuantityValid, newKidsQuantityValid, newTableValid, newKeyPassValid,
     onInputChange, onResetForm, isFormValid
   } = useForm({
     newName: data.name,
     newPhone: data.phone,
     newAdultsQuantity: data.adultsQuantity,
     newKidsQuantity: data.kidsQuantity,
+    newKeyPass: data.keyPass,
+    newTable: data.table,
   }, formValidations );
 
   const onUpdateTicket = ( e ) => {
@@ -44,7 +48,7 @@ export const ModalUpdateTicket = () => {
 
     updateTicket(
       data.id,
-      {...formData, adultsQuantity: Number(formData.adultsQuantity) + 1},
+      {...formData},
       { eventID: id, page: 1, limit: 15 }
     );
 
@@ -135,6 +139,46 @@ export const ModalUpdateTicket = () => {
           }`}
         >
           {newKidsQuantityValid}
+        </span>
+      </div>
+      <div className="form__field">
+        <label 
+          htmlFor="" 
+          className="form__label">Nuevo número de mesa</label>
+        <input 
+          placeholder="Ingrese el nuevo nombre"
+          name="newTable"
+          value={ newTable }
+          onChange={ onInputChange }
+          type="text" 
+          className="form__input" 
+        />
+        <span
+          className={`form__span ${
+            !isFormValid && formSubmitted ? 'text-wrong' : null
+          }`}
+        >
+          {newTableValid}
+        </span>
+      </div>
+      <div className="form__field">
+        <label 
+          htmlFor="" 
+          className="form__label">Nueva clave</label>
+        <input 
+          placeholder="Ingrese la nueva clave"
+          name="newKeyPass"
+          value={ newKeyPass }
+          onChange={ onInputChange }
+          type="text" 
+          className="form__input" 
+        />
+        <span
+          className={`form__span ${
+            !isFormValid && formSubmitted ? 'text-wrong' : null
+          }`}
+        >
+          {newKeyPassValid}
         </span>
       </div>
       <div className="form__button">

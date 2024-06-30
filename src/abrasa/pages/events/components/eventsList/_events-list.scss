@@ -6,6 +6,9 @@
   margin-bottom: calc( v.$gap * 6 );
   row-gap: calc( v.$gap * 4 );
   @include m.gridLayout('none', calc( v.$gap * 2 ), 3);
+  @include m.responsiveDesign('tab-land') {
+    grid-template-columns: repeat(2, 1fr);
+  }
   @include m.responsiveDesign('phone') {
     grid-template-columns: 1fr;
   }

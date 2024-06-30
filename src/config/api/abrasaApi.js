@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { getEnvVariables } from '../../helpers';
 
-const { VITE_API_URL_PROD } = getEnvVariables();
+const { VITE_API_URL } = getEnvVariables();
 
 const abrasaApi = axios.create({
-  baseURL: VITE_API_URL_PROD,
+  baseURL: VITE_API_URL,
 });
 
 abrasaApi.interceptors.request.use((config) => {

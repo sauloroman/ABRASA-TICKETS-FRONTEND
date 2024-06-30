@@ -22,7 +22,7 @@
     border-radius: 10px;
     margin-right: calc( v.$gap * 2 );
     @include m.responsiveDesign('phone') {
-      width: 30rem;
+      width: 100%;
       margin-right: 0;
       margin-bottom: 2rem
     }
@@ -95,6 +95,9 @@
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: .5rem;
+      @include m.responsiveDesign('tab-land') {
+        margin-bottom: 2rem;
+      }
       @include m.responsiveDesign('phone') {
         padding: 1rem 0;
         letter-spacing: 1px;
@@ -113,7 +116,11 @@
   &__list {
     @include m.flexLayout('column');
     align-items: flex-start;
+    @include m.responsiveDesign('tab-land') {
+      display: none;
+    }
     @include m.responsiveDesign('phone') {  
+      display: block;
       margin-bottom: 2rem;
     }
   }

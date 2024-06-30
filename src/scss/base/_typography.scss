@@ -5,6 +5,10 @@ html {
   font-size: 62.5%;
 
   @include m.responsiveDesign( 'tab-port' ) {
+    font-size: 50%;
+  }
+
+  @include m.responsiveDesign('phone') {
     font-size: 45%;
   }
 }

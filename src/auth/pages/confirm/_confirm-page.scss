@@ -9,6 +9,12 @@
   
   &__grid {
     @include m.gridLayout('none', 1.2rem, 5 );
+    @include m.responsiveDesign('phone') {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__box {
@@ -19,8 +25,8 @@
     outline: none;
     font-size: 3.2rem;
     @include m.responsiveDesign('phone') {
-      width: 7rem;
-      height: 7rem;
+      width: 5rem;
+      height: 5rem;
     }
     
     &::placeholder {

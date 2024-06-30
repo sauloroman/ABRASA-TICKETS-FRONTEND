@@ -7,13 +7,15 @@ const formData = {
   phone: '',
   adultsQuantity: 0,
   kidsQuantity: 0,
+  table: 0,
 }
 
 const formValidations = {
   name: [ value => value.length > 0, 'El nombre es obligatorio'] ,
   phone: [ value => value.length > 0 && value.length < 11, 'Numero de teléfono no válido'],
-  adultsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
-  kidsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
+  adultsQuantity: [ value => value >= 1, 'No es cantidad valida'] ,
+  kidsQuantity: [ value => value >= 0 || !value, 'No es cantidad valida'],
+  table: [ value => value >= 0, 'No es una mesa valida' ]
 }
 
 export const ModalCreateTicket = () => {
@@ -24,8 +26,8 @@ export const ModalCreateTicket = () => {
   const { closeModal } = useUI();
 
   const {
-    name, phone, adultsQuantity, kidsQuantity, onInputChange, onResetForm, formState,
-    nameValid, phoneValid, adultsQuantityValid, kidsQuantityValid, isFormValid
+    name, phone, adultsQuantity, kidsQuantity, table, onInputChange, onResetForm, formState,
+    nameValid, phoneValid, adultsQuantityValid, kidsQuantityValid, tableValid, isFormValid
   } = useForm( formData, formValidations );
   
 
@@ -37,7 +39,7 @@ export const ModalCreateTicket = () => {
     if ( !isFormValid ) return;
 
     createTicket( 
-      { ...formState, adultsQuantity: Number(adultsQuantity) + 1, event: id },
+      { ...formState, event: id },
       { eventID: id, page: 1, limit: 15 }
     );
     
@@ -51,7 +53,7 @@ export const ModalCreateTicket = () => {
   return (
     <form onSubmit={ onCreateTicket } className="form">
       <div className="form__field">
-        <label htmlFor="" className="form__label">Nombre a quien corresponde</label>
+        <label htmlFor="" className="form__label">Nombre a quien corresponde el boleto</label>
         <input  
           name="name"
           value={ name }
@@ -87,7 +89,7 @@ export const ModalCreateTicket = () => {
         </span>
       </div>
       <div className="form__field">
-        <label htmlFor="" className="form__label">Adultos</label>
+        <label htmlFor="" className="form__label">Cantidad de pases para adulto</label>
         <input  
           name="adultsQuantity"
           value={ adultsQuantity }
@@ -106,7 +108,7 @@ export const ModalCreateTicket = () => {
         </span>
       </div>
       <div className="form__field">
-        <label htmlFor="" className="form__label">Niños</label>
+        <label htmlFor="" className="form__label">Cantidad de pases para niño</label>
         <input  
           name="kidsQuantity"
           value={ kidsQuantity }
@@ -122,6 +124,25 @@ export const ModalCreateTicket = () => {
           }`}
         >
           {kidsQuantityValid}
+        </span>
+      </div>
+      <div className="form__field">
+        <label htmlFor="" className="form__label">Número de mesa (puedes asignarlo después)</label>
+        <input  
+          name="table"
+          value={ table }
+          onChange={ onInputChange }
+          className="form__input"
+          placeholder="Ingresa el número de mesa"
+          type="number"
+          min={0} 
+        />
+         <span
+          className={`form__span ${
+            !isFormValid && formSubmitted ? 'text-wrong' : null
+          }`}
+        >
+          {tableValid}
         </span>
       </div>
       <div className="form__buttons">

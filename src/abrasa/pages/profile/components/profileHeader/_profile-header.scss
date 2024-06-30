@@ -55,6 +55,9 @@
   &__title {
     font-family: v.$font-text;
     font-weight: bolder;
+    @include m.responsiveDesign('tab-land') {
+      font-size: 1.6rem;
+    }
     @include m.responsiveDesign('phone') {
       font-size: 1.8rem;
       line-height: 1.2;

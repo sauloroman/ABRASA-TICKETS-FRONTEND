@@ -12,17 +12,19 @@ export const ModalUpdateEvent = () => {
 
   const [ formSubmitted, setFormSubmitted ] = useState(false);
 
-  const { event: { id, name, eventType, eventDate, client, description }, updateEvent } = useEvents();
+  const { event: { id, name, eventType, eventDate, client, description, invitation }, updateEvent } = useEvents();
   
   const {
-    newName, newEventDate, newEventType, newClient, newDescription, formState, newEventTypeValid, newDescriptionValid,
+    newName, newEventDate, newEventType, newClient, newInvitation, newDescription, 
+    formState, newEventTypeValid, newDescriptionValid,
     isFormValid, onInputChange, onResetForm
   } = useForm( {
     newName: name , 
     newEventType: eventType,
     newEventDate: eventDate,
     newClient: client, 
-    newDescription: description
+    newDescription: description,
+    newInvitation: invitation,
   }, formValidations ); 
 
   const { closeModal } = useUI();
@@ -109,6 +111,17 @@ export const ModalUpdateEvent = () => {
           className="form__input"
           name='newClient'
           value={newClient}
+          onChange={ onInputChange }
+          type="text" 
+        />
+      </div>
+      <div className="form__field">
+        <label className="form__label">Nueva invitación</label>
+        <input 
+          placeholder="Ingresa el url de la invitación"
+          className="form__input"
+          name='newInvitation'
+          value={newInvitation}
           onChange={ onInputChange }
           type="text" 
         />

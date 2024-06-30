@@ -5,7 +5,9 @@ export const ticketsSlice = createSlice({
   initialState: {
     total: 0,
     totalAdults: 0,
+    totalAdultsCounter: 0,
     totalKids: 0,
+    totalKidsCounter: 0,
     page: 1,
     totalPages: 0,
     tickets: [],
@@ -32,8 +34,16 @@ export const ticketsSlice = createSlice({
       state.totalAdults = payload;
     },
 
+    setTotalAdultsCounter: (state, { payload }) => {
+      state.totalAdultsCounter = payload;
+    },
+
     setTotalKids: (state, { payload }) => {
       state.totalKids = payload;
+    },
+
+    setTotalKidsCounter: (state, { payload }) => {
+      state.totalKidsCounter = payload;
     },
 
     setTicketTarget: (state, { payload }) => {
@@ -47,7 +57,9 @@ export const {
   setPage,
   setTotal,
   setTotalAdults,
+  setTotalAdultsCounter,
   setTotalKids,
+  setTotalKidsCounter,
   setTotalPages,
   setTicketTarget,
 } = ticketsSlice.actions;

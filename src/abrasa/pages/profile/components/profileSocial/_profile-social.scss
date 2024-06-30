@@ -40,6 +40,9 @@
       flex: 1;
       font-weight: 500;
       @include m.flexLayout('center');
+      @include m.responsiveDesign('tab-land') {
+        flex: .3;
+      }
       @include m.responsiveDesign('phone') {
         width: fit-content;
       }

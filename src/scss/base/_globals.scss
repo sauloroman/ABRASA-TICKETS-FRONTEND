@@ -24,7 +24,6 @@ a:link, a:visited {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  margin-right: 1.2rem;
   @include m.responsiveDesign('phone') {
     height: 4rem;
     display: flex;

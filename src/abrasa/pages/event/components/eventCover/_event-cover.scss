@@ -6,10 +6,10 @@
   background-position: center;
   background-size: cover;
   height: 25rem;
-  width: 100%;
+  width: calc( 100% - 4rem );
+  margin: 2rem;
   position: relative;
   border-radius: 10px;
-  margin-right: calc( v.$gap * 2 );
   object-fit: cover;
 
   &__layout {

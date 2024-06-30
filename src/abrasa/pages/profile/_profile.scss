@@ -5,9 +5,9 @@
 
   &__container {
     position: relative;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
-    margin-top: -8rem;
+    margin-top: -10rem;
     @include m.responsiveDesign('phone') {
       width: 85%;
     }
@@ -16,6 +16,11 @@
   &__grid {
     width: calc( 100% - calc( v.$gap * 2 ) );
     @include m.gridLayout('70-30', calc( v.$gap * 2 ) );
+    @include m.responsiveDesign('tab-land') {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+    }
     @include m.responsiveDesign('phone') {
       width: 100%;
       grid-template-columns: 1fr;

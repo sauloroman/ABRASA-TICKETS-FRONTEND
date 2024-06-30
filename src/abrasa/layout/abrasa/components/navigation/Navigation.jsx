@@ -39,7 +39,7 @@ export const Navigation = () => {
               className={({ isActive }) =>
                 `navigation__link ${isActive && 'navigation__link--active'}`
               }
-              to="/events"
+              to="/"
             >
               Tus Eventos
             </NavLink>
@@ -61,7 +61,7 @@ export const Navigation = () => {
               className={({ isActive }) =>
                 `navigation__link ${isActive && 'navigation__link--active'}`
               }
-              to="/"
+              to="/profile"
             >
               Perfil
             </NavLink>

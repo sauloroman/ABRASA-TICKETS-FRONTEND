@@ -5,12 +5,12 @@
   padding: v.$gap;
   background-color: v.$color-main;
   height: 100%;
-  width: 30rem;
+  width: 25rem;
   position: fixed;
   transition: all 0.4s ease-out;
 
   &__show {
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       height: fit-content;
       transform: translate(2%, 1%);
       z-index: 9;
@@ -18,7 +18,7 @@
   }
 
   &__hide {
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       height: fit-content;
       z-index: 9;
       transform: translate(-105%, 1%);
@@ -30,7 +30,7 @@
     opacity: 0;
     pointer-events: none;
 
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       opacity: 1;
       pointer-events: all;
       background-color: v.$color-main;
@@ -43,8 +43,13 @@
       box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
       position: fixed;
       z-index: 2;
-      top: 10px;
-      left: 10px;
+      bottom: 2%;
+      right: 2%;
+    }
+
+    @include m.responsiveDesign('phone') {
+      top: 2%;
+      right: 2%;
     }
 
     &-icon {
@@ -57,7 +62,7 @@
     display: none;
     opacity: 0;
     pointer-events: none;
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       opacity: 1;
       pointer-events: all;
       display: flex;
@@ -66,7 +71,7 @@
   }
 
   &__close {
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       text-align: right;
       font-size: 3.2rem;
       color: v.$color-white;
@@ -87,7 +92,7 @@
     margin-bottom: calc(v.$gap * 2);
     border-bottom: v.$border-df;
     padding-bottom: 2rem;
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       img {
         display: none;
       }
@@ -95,7 +100,7 @@
   }
 
   &__title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: #fff;
@@ -105,18 +110,18 @@
   &__image {
     background: #fff;
     border: 1px solid #555;
-    width: 6rem;
-    height: 6rem;
+    width:5rem;
+    height: 5rem;
     border-radius: 50%;
   }
 
   &__list {
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     height: 85%;
 
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       height: 80vh;
     }
   }
@@ -126,6 +131,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 3.2rem;
+    font-size: 1.4rem;
 
     &:last-of-type {
       display: flex;

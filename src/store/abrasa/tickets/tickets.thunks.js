@@ -6,30 +6,32 @@ import {
   setTickets,
   setTotal,
   setTotalAdults,
+  setTotalAdultsCounter,
   setTotalKids,
+  setTotalKidsCounter,
 } from './tickets.slice';
 
-export const startGettingAllTickets = () => {
-  return async ( dispatch ) => {
-    dispatch(setIsLoading(true));
-    try {
-      const { data } = await abrasaApi.get('/tickets');
+// export const startGettingAllTickets = () => {
+//   return async ( dispatch ) => {
+//     dispatch(setIsLoading(true));
+//     try {
+//       const { data } = await abrasaApi.get('/tickets');
       
-      const tickets = data.filter( ticket => ticket.event === '665f6abc56f0eba46bf4b646');
-      const total = tickets.length;
-      const adultsQuantity = tickets.reduce( (acc, ticket) => ticket.adultsQuantity + acc,0);
-      const kidsQuantity = tickets.reduce( (acc, ticket) => ticket.kidsQuantity + acc,0);
+//       const tickets = data.filter( ticket => ticket.event === '665f6abc56f0eba46bf4b646');
+//       const total = tickets.length;
+//       const adultsQuantity = tickets.reduce( (acc, ticket) => ticket.adultsQuantity + acc,0);
+//       const kidsQuantity = tickets.reduce( (acc, ticket) => ticket.kidsQuantity + acc,0);
       
-      dispatch( setTickets(tickets ) );
-      dispatch(setTotal(total));
-      dispatch(setTotalAdults(adultsQuantity));
-      dispatch(setTotalKids(kidsQuantity));
-    } catch (error) {
-      console.log(error);
-    }
-    dispatch(setIsLoading(false));
-  }
-}
+//       dispatch( setTickets(tickets ) );
+//       dispatch(setTotal(total));
+//       dispatch(setTotalAdults(adultsQuantity));
+//       dispatch(setTotalKids(kidsQuantity));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     dispatch(setIsLoading(false));
+//   }
+// }
 
 export const startGettingTicketsOfEvent = ({
   eventID = '',
@@ -43,13 +45,15 @@ export const startGettingTicketsOfEvent = ({
       const { data } = await abrasaApi.get(
         `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
       );
-      const { total, page, tickets, adultsQuantity, kidsQuantity } = data;
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
       dispatch(setTickets(tickets));
       dispatch(setPage(page));
       dispatch(setTotal(total));
       dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter) )
       dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter))
     } catch (error) {
       console.log(error);
       dispatch(
@@ -83,13 +87,15 @@ export const startDeletingAllTicketsOfEvent = (
         `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
       );
 
-      const { total, page, tickets, adultsQuantity, kidsQuantity } = data;
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
       dispatch(setTickets(tickets));
       dispatch(setPage(page));
       dispatch(setTotal(total));
       dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter) )
       dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter))
 
       dispatch(
         setAlert({
@@ -134,13 +140,15 @@ export const startCreatingTicket = (
       const { data } = await abrasaApi.get(
         `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
       );
-      const { total, page, tickets, adultsQuantity, kidsQuantity } = data;
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
       dispatch(setTickets(tickets));
       dispatch(setPage(page));
       dispatch(setTotal(total));
       dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter) )
       dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter))
 
       dispatch(
         setAlert({
@@ -262,13 +270,15 @@ export const startDeletingTicketById = (
       const { data } = await abrasaApi.get(
         `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
       );
-      const { total, page, tickets, adultsQuantity, kidsQuantity } = data;
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
       dispatch(setTickets(tickets));
       dispatch(setPage(page));
       dispatch(setTotal(total));
       dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter) )
       dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter))
 
       dispatch(
         setAlert({
@@ -315,13 +325,15 @@ export const startUpdatingTicket = (
       const { data } = await abrasaApi.get(
         `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
       );
-      const { total, page, tickets, adultsQuantity, kidsQuantity } = data;
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
       dispatch(setTickets(tickets));
       dispatch(setPage(page));
       dispatch(setTotal(total));
       dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter) )
       dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter))
 
       dispatch(
         setAlert({

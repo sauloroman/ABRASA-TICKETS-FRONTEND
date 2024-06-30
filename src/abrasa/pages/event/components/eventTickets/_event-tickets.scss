@@ -2,7 +2,6 @@
 @use '../../../../../scss/abstracts/mixins' as m;
 
 .event-tickets {
-  flex-basis: 40%;
   border: v.$border-df;
   padding: calc( v.$gap * 2 );
   border-radius: 10px;

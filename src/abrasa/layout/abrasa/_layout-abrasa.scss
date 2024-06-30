@@ -3,9 +3,9 @@
 
 .layout-abrasa {  
   height: 100vh;
-  margin-left: 30rem;
+  margin-left: 25rem;
 
-  @include m.responsiveDesign('phone') {
+  @include m.responsiveDesign('tab-land') {
     margin-left: 0;
   }
 

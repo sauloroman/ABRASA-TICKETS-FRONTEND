@@ -2,7 +2,7 @@ import { useScanTicket } from '../../../../hooks';
 
 export const ScanTicketInfo = () => {
   const { ticketScanned } = useScanTicket();
-  const { id, name, adultsQuantity, kidsQuantity, qrCode, phone } =
+  const { id, name, adultsQuantity, kidsQuantity, qrCode, phone, adultsCounter, kidsCounter } =
     ticketScanned;
 
   return (
@@ -28,11 +28,11 @@ export const ScanTicketInfo = () => {
         <div className="scanTicket-info__box">
           <div className="scanTicket-info__quantity">
             <p>Adultos</p>
-            <span>{adultsQuantity}</span>
+            <span>{adultsQuantity - adultsCounter}</span>
           </div>
           <div className="scanTicket-info__quantity">
             <p>Niños</p>
-            <span>{kidsQuantity}</span>
+            <span>{kidsQuantity - kidsCounter}</span>
           </div>
         </div>
       </div>

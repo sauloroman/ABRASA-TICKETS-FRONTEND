@@ -1,3 +1,5 @@
+@use './variables' as v;
+
 @mixin gridLayout( $layout: 'none', $gap, $cols: 0 ) {
   display: grid;
   place-items: center;
@@ -17,6 +19,10 @@
 
   @if $layout == '80-20' {
     grid-template-columns: 80% 20%;
+  }
+
+  @if $layout == '40-60' {
+    grid-template-columns: 40% 60%;
   }
 
 }
@@ -53,6 +59,38 @@
   z-index: $index;
   background-color: $color;
   opacity: $opacity;
+}
+
+@mixin boxStyle() {
+  border: v.$border-df;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: v.$shadow-df;
+  background-color: #fff;  
+}
+
+@mixin tableTitlePage() {
+  @include flexLayout('none');
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-family: v.$font-text;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+@mixin tableTitleIcon() {
+  display: inline-block;
+  background-color: v.$color-main;
+  @include flexLayout('center');
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 1.2rem;
+
+  &-element {
+    color: v.$color-white;
+  }
 }
 
 @mixin responsiveDesign( $breakpoint ) {
