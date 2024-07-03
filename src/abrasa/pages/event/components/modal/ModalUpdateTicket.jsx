@@ -8,7 +8,7 @@ const formValidations = {
   newAdultsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   newKidsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   newKeyPass: [ value => value.length >= 4, 'La clave debe de ser mínimo 4 letras'],
-  newTable: [ value => value > 0, 'El numero de mesa debe ser mayor que 0'],
+  newTable: [ value => value >= 0, 'El numero de mesa no es valido'],
 }
 
 export const ModalUpdateTicket = () => {
