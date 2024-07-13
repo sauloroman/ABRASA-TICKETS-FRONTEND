@@ -7,7 +7,7 @@ const formData = {
   phone: '',
   adultsQuantity: 0,
   kidsQuantity: 0,
-  table: 0,
+  table: "Por Asignar",
 }
 
 const formValidations = {
@@ -15,7 +15,7 @@ const formValidations = {
   phone: [ value => value.length > 0 && value.length < 11, 'Numero de teléfono no válido'],
   adultsQuantity: [ value => value >= 1, 'No es cantidad valida'] ,
   kidsQuantity: [ value => value >= 0 || !value, 'No es cantidad valida'],
-  table: [ value => value >= 0, 'No es una mesa valida' ]
+  table: [ value => value >= "", 'No es una mesa valida' ]
 }
 
 export const ModalCreateTicket = () => {
@@ -134,8 +134,7 @@ export const ModalCreateTicket = () => {
           onChange={ onInputChange }
           className="form__input"
           placeholder="Ingresa el número de mesa"
-          type="number"
-          min={0} 
+          type="text"
         />
          <span
           className={`form__span ${

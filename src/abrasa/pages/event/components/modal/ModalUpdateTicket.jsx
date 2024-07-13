@@ -8,7 +8,7 @@ const formValidations = {
   newAdultsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   newKidsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   newKeyPass: [ value => value.length >= 4, 'La clave debe de ser mínimo 4 letras'],
-  newTable: [ value => value >= 0, 'El numero de mesa no es valido'],
+  newTable: [ value => value >= "", 'El numero de mesa no es valido'],
 }
 
 export const ModalUpdateTicket = () => {
@@ -85,7 +85,7 @@ export const ModalUpdateTicket = () => {
           htmlFor="" 
           className="form__label">Número del boleto</label>
         <input 
-          placeholder="Ingrese el nuevo nombre"
+          placeholder="Ingrese el nuevo número de teléfono"
           name="newPhone"
           value={ newPhone }
           onChange={ onInputChange }
@@ -105,7 +105,7 @@ export const ModalUpdateTicket = () => {
           htmlFor="" 
           className="form__label">Nueva cantidad de adultos</label>
         <input 
-          placeholder="Ingrese el nuevo nombre"
+          placeholder="Ingrese la nueva cantidad de adultos"
           name="newAdultsQuantity"
           value={ newAdultsQuantity }
           onChange={ onInputChange }
@@ -126,7 +126,7 @@ export const ModalUpdateTicket = () => {
           htmlFor="" 
           className="form__label">Nueva cantidad de niños</label>
         <input 
-          placeholder="Ingrese el nuevo nombre"
+          placeholder="Ingrese la nueva cantidad de infantes"
           name="newKidsQuantity"
           value={ newKidsQuantity }
           onChange={ onInputChange }
@@ -146,7 +146,7 @@ export const ModalUpdateTicket = () => {
           htmlFor="" 
           className="form__label">Nuevo número de mesa</label>
         <input 
-          placeholder="Ingrese el nuevo nombre"
+          placeholder="Ingrese el nuevo numero de mesa"
           name="newTable"
           value={ newTable }
           onChange={ onInputChange }
