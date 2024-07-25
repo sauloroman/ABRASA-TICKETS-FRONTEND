@@ -53,7 +53,7 @@ export const EventTable = () => {
                   <a 
                     className='event-table__tlink' 
                     target='_blank' 
-                    href={`https://wa.me/${ticket.phone}?text=Hola ${ticket.name}. El equipo de ABRASA Boletos Digitales te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event.invitation} %0A🔑Clave de acceso: ${ ticket.keyPass } %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.` }>
+                    href={`https://wa.me/${ticket.phone}?text=Hola ${ticket.name}. El equipo de Grupo SC Eventos y Cathering te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event.invitation} %0A🔑Clave de acceso: ${ ticket.keyPass } %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.` }>
                     <i
                       title="Enviar Boleto"
                       className="bx bx-send  event-table__ticon"
