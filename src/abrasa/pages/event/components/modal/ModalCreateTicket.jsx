@@ -13,7 +13,7 @@ const formData = {
 const formValidations = {
   name: [ value => value.length > 0, 'El nombre es obligatorio'] ,
   phone: [ value => value.length > 0 && value.length < 11, 'Numero de teléfono no válido'],
-  adultsQuantity: [ value => value >= 1, 'No es cantidad valida'] ,
+  adultsQuantity: [ value => value >= 0, 'No es cantidad valida'] ,
   kidsQuantity: [ value => value >= 0 || !value, 'No es cantidad valida'],
   table: [ value => value >= "", 'No es una mesa valida' ]
 }
