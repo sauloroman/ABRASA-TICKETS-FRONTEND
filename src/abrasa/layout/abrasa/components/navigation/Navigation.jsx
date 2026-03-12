@@ -45,17 +45,6 @@ export const Navigation = () => {
             </NavLink>
           </li>
           <li className="navigation__item">
-            <i className="bx bx-bar-chart-alt-2 navigation__icon"></i>
-            <NavLink
-              className={({ isActive }) =>
-                `navigation__link ${isActive && 'navigation__link--active'}`
-              }
-              to="/stadistics"
-            >
-              Tus Estadísticas
-            </NavLink>
-          </li>
-          <li className="navigation__item">
             <i className="bx bx-user navigation__icon"></i>
             <NavLink
               className={({ isActive }) =>
