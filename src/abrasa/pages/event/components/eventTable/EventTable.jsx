@@ -1,4 +1,4 @@
-import { useEvents, useProfile, useTickets } from '../../../../hooks';
+import { useEvents, useTickets } from '../../../../hooks';
 import { EventButtons, EventPagination } from '../';
 import { useUI } from '../../../../../hooks';
 
@@ -41,7 +41,7 @@ export const EventTable = () => {
           </thead>
 
           <tbody className="event-table__tbody">
-            {tickets.map((ticket, i) => (
+            {tickets.map((ticket) => (
               <tr key={ticket.id} className="event-table__tr">
                 <td className="event-table__td">{ticket.name}</td>
                 <td className="event-table__td">{ticket.phone}</td>
@@ -50,10 +50,10 @@ export const EventTable = () => {
                 <td className="event-table__td">{ticket.table}</td>
                 <td className="event-table__td">{ticket.keyPass}</td>
                 <td className="event-table__td ">
-                  <a 
-                    className='event-table__tlink' 
-                    target='_blank' 
-                    href={`https://wa.me/${ticket.phone}?text=Hola ${ticket.name}. El equipo de Events Creation te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event.invitation} %0A🔑Clave de acceso: ${ ticket.keyPass } %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.` }>
+                  <a
+                    className='event-table__tlink'
+                    target='_blank'
+                    href={`https://wa.me/52${ticket.phone}?text=Hola ${ticket.name}. El equipo de LAS BRASAS te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event.invitation} %0A🔑Clave de acceso: ${ticket.keyPass} %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.`}>
                     <i
                       title="Enviar Boleto"
                       className="bx bx-send  event-table__ticon"
@@ -62,17 +62,17 @@ export const EventTable = () => {
                   <i
                     onClick={() => openModal('eventPageModal', 'updateTicket', ticket)}
                     title="Editar Boleto"
-                    className="bx bx-edit  event-table__ticon"z
+                    className="bx bx-edit  event-table__ticon" z
                   ></i>
                   <i
                     onClick={() => openModal('confirmModal', 'deleteTicket', ticket.id)}
                     title="Eliminar Boleto"
                     className="bx bx-trash  event-table__ticon"
                   ></i>
-                  <a target='_blank' className='event-table__tlink' href={ ticket.qrCode }>
+                  <a target='_blank' className='event-table__tlink' href={ticket.qrCode}>
                     <i
                       title="Ver Boleto"
-                      className="bx bx-show event-table__ticon"z
+                      className="bx bx-show event-table__ticon" z
                     ></i>
                   </a>
                 </td>
@@ -81,7 +81,7 @@ export const EventTable = () => {
           </tbody>
         </table>
       </div>
-      {tickets.length && <EventPagination /> }
+      {tickets.length && <EventPagination />}
     </div>
   );
 };
