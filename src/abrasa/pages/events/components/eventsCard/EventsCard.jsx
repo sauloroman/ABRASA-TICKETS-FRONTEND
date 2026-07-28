@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useUI } from "../../../../../hooks";
+import { useAuthentication } from "../../../../../auth/hooks";
 
 const formatString = ( name = '', lengthString = 0 ) => {
   let finalName = name;
@@ -12,8 +14,8 @@ const formatString = ( name = '', lengthString = 0 ) => {
 }
 
 export const EventsCard = ({ id, image, eventType, description, eventDate, name  }) => {
-
   const { openModal } = useUI();
+  const { user } = useAuthentication();
 
   return ( 
     <li className="events-card" >
@@ -32,10 +34,11 @@ export const EventsCard = ({ id, image, eventType, description, eventDate, name 
         <p className="events-card__descr">{ formatString(description, 90) }</p>
       </div>
       <footer className="events-card__footer">
-
         <div className="events-card__footer-buttons">
           <Link to={`/events/${id}`} className='events-card__button btn btn--outline'>Ver evento</Link>
-          <button onClick={ () => openModal('confirmModal', 'deleteEvent', id ) } className='events-card__button btn btn--outline'>Eliminar</button>
+          {user?.role !== 'Cliente' && (
+            <button onClick={ () => openModal('confirmModal', 'deleteEvent', id ) } className='events-card__button btn btn--outline'>Eliminar</button>
+          )}
         </div>
 
         <p className='events-card__date'>Fecha: <span>{ eventDate }</span></p>
@@ -43,4 +46,12 @@ export const EventsCard = ({ id, image, eventType, description, eventDate, name 
     </li>
   )
 }
- 
+
+EventsCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  eventType: PropTypes.string,
+  description: PropTypes.string,
+  eventDate: PropTypes.string,
+  name: PropTypes.string,
+};

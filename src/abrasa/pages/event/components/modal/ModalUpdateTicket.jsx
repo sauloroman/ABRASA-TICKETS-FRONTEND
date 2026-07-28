@@ -49,7 +49,7 @@ export const ModalUpdateTicket = () => {
     updateTicket(
       data.id,
       {...formData},
-      { eventID: id, page: 1, limit: 15 }
+      { eventID: id, page: 1, limit: 30 }
     );
 
     setFormSubmitted( false );

@@ -1,9 +1,10 @@
 import abrasaLogo from '../../../../../assets/img/logo-light.png';
 import { useUI } from '../../../../../hooks';
+import { useAuthentication } from '../../../../../auth/hooks';
 
 export const EventTickets = () => {
-
   const { openModal } = useUI();
+  const { user } = useAuthentication();
 
   return (
     <div className="event-tickets">
@@ -23,16 +24,18 @@ export const EventTickets = () => {
           <p>Asigna a cada invitado la cantidad de boletos</p>
         </li>
       </ul>
-      <div className="event-tickets__buttons">
-        <button onClick={ () => openModal('eventPageModal', 'scanTicket') } className="btn btn--outline event-tickets__button">
-          <i className='bx bx-barcode-reader event-tickets__iconButton' ></i>
-          Escanear Boletos
-        </button>
-        <button onClick={ () => openModal('eventPageModal', 'createTicket')} className="btn btn--outline event-tickets__button">
-          <i className='bx bx-plus event-tickets__iconButton' ></i>
-          Crear Boleto
-        </button>
-      </div>
+      {user?.role !== 'Cliente' && (
+        <div className="event-tickets__buttons">
+          <button onClick={ () => openModal('eventPageModal', 'scanTicket') } className="btn btn--outline event-tickets__button">
+            <i className='bx bx-barcode-reader event-tickets__iconButton' ></i>
+            Escanear Boletos
+          </button>
+          <button onClick={ () => openModal('eventPageModal', 'createTicket')} className="btn btn--outline event-tickets__button">
+            <i className='bx bx-plus event-tickets__iconButton' ></i>
+            Crear Boleto
+          </button>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};

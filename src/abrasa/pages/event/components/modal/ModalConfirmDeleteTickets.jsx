@@ -10,7 +10,7 @@ export const ModalConfirmDeleteTickets = () => {
 
   const onDeleteTickets = (e) => {
     e.preventDefault();
-    deleteAllTicketsOfEvent(id, { eventID: id, page: 1, limit: 15 });
+    deleteAllTicketsOfEvent(id, { eventID: id, page: 1, limit: 30 });
     closeModal('confirmModal');
   };
 

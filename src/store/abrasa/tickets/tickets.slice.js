@@ -12,6 +12,7 @@ export const ticketsSlice = createSlice({
     totalPages: 0,
     tickets: [],
     ticketTarget: {},
+    isLoading: false,
   },
   reducers: {
     setTickets: (state, { payload }) => {
@@ -49,6 +50,10 @@ export const ticketsSlice = createSlice({
     setTicketTarget: (state, { payload }) => {
       state.ticketTarget = payload;
     },
+
+    setIsLoadingTickets: (state, { payload }) => {
+      state.isLoading = payload;
+    },
   },
 });
 
@@ -62,4 +67,5 @@ export const {
   setTotalKidsCounter,
   setTotalPages,
   setTicketTarget,
+  setIsLoadingTickets,
 } = ticketsSlice.actions;

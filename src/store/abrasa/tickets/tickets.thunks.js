@@ -1,6 +1,7 @@
 import abrasaApi from '../../../config/api/abrasaApi';
 import { setAlert, setIsLoading } from '../../ui/ui.slice';
 import {
+  setIsLoadingTickets,
   setPage,
   setTicketTarget,
   setTickets,
@@ -35,15 +36,17 @@ import {
 
 export const startGettingTicketsOfEvent = ({
   eventID = '',
-  page: pageUser,
-  limit: limitUser,
+  page: pageUser = 1,
+  limit: limitUser = 30,
+  name = '',
 }) => {
   return async (dispatch) => {
-    dispatch(setIsLoading(true));
+    dispatch(setIsLoadingTickets(true));
 
     try {
+      const nameParam = name ? `&name=${encodeURIComponent(name)}` : '';
       const { data } = await abrasaApi.get(
-        `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`
+        `/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}${nameParam}`
       );
       const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data;
 
@@ -69,7 +72,7 @@ export const startGettingTicketsOfEvent = ({
       );
     }
 
-    dispatch(setIsLoading(false));
+    dispatch(setIsLoadingTickets(false));
   };
 };
 
@@ -129,7 +132,7 @@ export const startDeletingAllTicketsOfEvent = (
 
 export const startCreatingTicket = (
   ticketInformation = {},
-  { eventID = '', page: pageUser = 1, limit: limitUser = 15 }
+  { eventID = '', page: pageUser = 1, limit: limitUser = 30 }
 ) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
@@ -258,7 +261,7 @@ export const startUpdatingScannedTicket = (
 
 export const startDeletingTicketById = (
   ticketID = '',
-  { eventID = '', page: pageUser = 1, limit: limitUser = 15 }
+  { eventID = '', page: pageUser = 1, limit: limitUser = 30 }
 ) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
@@ -313,7 +316,7 @@ export const startDeletingTicketById = (
 export const startUpdatingTicket = (
   ticketID = '',
   newTicketInformation = {},
-  { eventID = '', page: pageUser = 1, limit: limitUser = 15 }
+  { eventID = '', page: pageUser = 1, limit: limitUser = 30 }
 ) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));

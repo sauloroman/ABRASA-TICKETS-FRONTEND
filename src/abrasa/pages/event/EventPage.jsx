@@ -9,31 +9,20 @@ export const EventPage = () => {
 
   const { id } = useParams();
   const { getEvent } = useEvents();
-  const { getTicketsByEvent, tickets, getTotalPages, page } = useTickets();
+  const { tickets, getTotalPages } = useTickets();
   const { eventPageModal, confirmModal } = useUI();
 
   useEffect(() => {
-    getEvent( id );
-    getTicketsByEvent( {
-      eventID: id, 
-      page: 1, 
-      limit: 15
-    });
-
-  }, []);
-
-  useEffect(() => {
-    getTicketsByEvent( {
-      eventID: id, 
-      page: page, 
-      limit: 15
-    });
-
-  }, [ page ]);
+    if (id) {
+      getEvent(id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   useEffect(() => {
     getTotalPages();
-  }, [tickets])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tickets]);
 
   return (
     <LayoutAbrasa>
@@ -51,7 +40,7 @@ export const EventPage = () => {
         </div>
       </section>
 
-      { (eventPageModal.isOpen || confirmModal.isOpen) && <ModalEvent />}
+      {(eventPageModal.isOpen || confirmModal.isOpen) && <ModalEvent />}
     </LayoutAbrasa>
   )
 }

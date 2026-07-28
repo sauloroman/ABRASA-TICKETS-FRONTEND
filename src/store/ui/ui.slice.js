@@ -32,6 +32,11 @@ export const uiSlice = createSlice({
                 selectedModal: '',
                 data: '',
             },
+            confirmationsPageModal: {
+                isOpen: false,
+                selectedModal: '',
+                data: '',
+            },
             confirmModal: {
                 isOpen: false,
                 selectedModal: '',

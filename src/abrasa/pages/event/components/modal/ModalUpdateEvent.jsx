@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { useForm } from "../../../../../hooks/useForm"
+import { useState, useEffect } from "react";
+import { useForm } from "../../../../../hooks/useForm";
 import { useEvents } from "../../../../hooks/useEvents";
 import { useUI } from "../../../../../hooks";
+import { useAuthentication } from "../../../../../auth/hooks";
+import abrasaApi from "../../../../../config/api/abrasaApi";
 
 const formValidations = {
   newDescription: [ value => value.length < 200, 'La descripción debe ser menor a 200 caracteres' ],
@@ -9,13 +11,15 @@ const formValidations = {
 }
 
 export const ModalUpdateEvent = () => {
-
   const [ formSubmitted, setFormSubmitted ] = useState(false);
+  const [ users, setUsers ] = useState([]);
 
-  const { event: { id, name, eventType, eventDate, client, description, invitation }, updateEvent } = useEvents();
+  const { event: { id, name, eventType, eventDate, client, description, invitation, createdBy }, updateEvent } = useEvents();
+  const { user: authUser } = useAuthentication();
+  const { closeModal } = useUI();
   
   const {
-    newName, newEventDate, newEventType, newClient, newInvitation, newDescription, 
+    newName, newEventDate, newEventType, newClient, newInvitation, newDescription, newCreatedBy,
     formState, newEventTypeValid, newDescriptionValid,
     isFormValid, onInputChange, onResetForm
   } = useForm( {
@@ -25,12 +29,18 @@ export const ModalUpdateEvent = () => {
     newClient: client, 
     newDescription: description,
     newInvitation: invitation,
+    newCreatedBy: createdBy || '',
   }, formValidations ); 
 
-  const { closeModal } = useUI();
+  useEffect(() => {
+    if (authUser?.role === 'Admin') {
+      abrasaApi.get('/auth/users')
+        .then(({ data }) => setUsers(data || []))
+        .catch(err => console.log('Error loading users:', err));
+    }
+  }, [authUser]);
 
   const onUpdateEvent = ( e ) => {
-
     e.preventDefault();
     setFormSubmitted( true );
     
@@ -137,6 +147,26 @@ export const ModalUpdateEvent = () => {
           type="date" 
         />
       </div>
+
+      {authUser?.role === 'Admin' && (
+        <div className="form__field">
+          <label className="form__label">Reasignar Creador / Usuario</label>
+          <select 
+            className="form__input"
+            name="newCreatedBy" 
+            value={ newCreatedBy } 
+            onChange={ onInputChange }
+          >
+            <option value="" disabled>&mdash; Selecciona un usuario &mdash;</option>
+            {users.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.name || u.email} ({u.role}) - {u.email}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <div className="form__buttons">
         <button className="btn btn--black">Actualizar Evento</button>
       </div>

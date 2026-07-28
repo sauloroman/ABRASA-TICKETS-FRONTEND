@@ -1,12 +1,33 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useEvents, useTickets } from '../../../../hooks';
 import { EventButtons, EventPagination } from '../';
 import { useUI } from '../../../../../hooks';
+import { useAuthentication } from '../../../../../auth/hooks';
 
 export const EventTable = () => {
-
-  const { tickets } = useTickets();
+  const { id } = useParams();
+  const { tickets, getTicketsByEvent, isLoading, total, page } = useTickets();
   const { openModal } = useUI();
   const { event } = useEvents();
+  const { user } = useAuthentication();
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (id) {
+        getTicketsByEvent({
+          eventID: id,
+          page: page || 1,
+          limit: 30,
+          name: searchTerm,
+        });
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, id, page]);
 
   return (
     <div className="event-table">
@@ -24,6 +45,38 @@ export const EventTable = () => {
           </p>
         </div>
       </header>
+
+      {/* Prominent High-Visibility Search Hero Bar */}
+      <div className="event-table__search-bar">
+        <div className="event-table__search-input-wrapper">
+          <i className="bx bx-search-alt-2 event-table__search-icon"></i>
+          <input
+            type="text"
+            placeholder="Buscar boletos por nombre, teléfono, mesa o clave de acceso..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="event-table__search-input"
+          />
+          {isLoading && (
+            <i className="bx bx-loader-alt bx-spin event-table__search-spinner"></i>
+          )}
+          {searchTerm && !isLoading && (
+            <button
+              onClick={() => setSearchTerm('')}
+              className="event-table__search-clear"
+              title="Limpiar búsqueda"
+            >
+              <i className="bx bx-x"></i>
+            </button>
+          )}
+        </div>
+        <div className="event-table__search-counter">
+          <span className="event-table__counter-badge">
+            <i className="bx bx-list-check"></i> {total} {total === 1 ? 'boleto' : 'boletos'}
+          </span>
+        </div>
+      </div>
+
       <EventButtons />
 
       <div className="event-table__content">
@@ -59,20 +112,24 @@ export const EventTable = () => {
                       className="bx bx-send  event-table__ticon"
                     ></i>
                   </a>
-                  <i
-                    onClick={() => openModal('eventPageModal', 'updateTicket', ticket)}
-                    title="Editar Boleto"
-                    className="bx bx-edit  event-table__ticon" z
-                  ></i>
-                  <i
-                    onClick={() => openModal('confirmModal', 'deleteTicket', ticket.id)}
-                    title="Eliminar Boleto"
-                    className="bx bx-trash  event-table__ticon"
-                  ></i>
+                  {user?.role !== 'Cliente' && (
+                    <>
+                      <i
+                        onClick={() => openModal('eventPageModal', 'updateTicket', ticket)}
+                        title="Editar Boleto"
+                        className="bx bx-edit  event-table__ticon"
+                      ></i>
+                      <i
+                        onClick={() => openModal('confirmModal', 'deleteTicket', ticket.id)}
+                        title="Eliminar Boleto"
+                        className="bx bx-trash  event-table__ticon"
+                      ></i>
+                    </>
+                  )}
                   <a target='_blank' className='event-table__tlink' href={ticket.qrCode}>
                     <i
                       title="Ver Boleto"
-                      className="bx bx-show event-table__ticon" z
+                      className="bx bx-show event-table__ticon"
                     ></i>
                   </a>
                 </td>

@@ -1,4 +1,3 @@
-import { useAuthentication } from "../../../../../auth/hooks";
 import { useUI } from "../../../../../hooks"
 import { useEvents, useTickets } from "../../../../hooks";
 
@@ -14,7 +13,7 @@ export const ModalConfirm = () => {
 
     deleteTicket(
       data,
-      { eventID: id, page: 1, limit: 15 }
+      { eventID: id, page: 1, limit: 30 }
     );
 
     closeModal('confirmModal');

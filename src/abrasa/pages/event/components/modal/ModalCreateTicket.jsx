@@ -40,7 +40,7 @@ export const ModalCreateTicket = () => {
 
     createTicket( 
       { ...formState, event: id },
-      { eventID: id, page: 1, limit: 15 }
+      { eventID: id, page: 1, limit: 30 }
     );
     
     closeModal('eventPageModal');

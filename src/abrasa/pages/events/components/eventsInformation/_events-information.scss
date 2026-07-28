@@ -2,152 +2,129 @@
 @use '../../../../../scss/abstracts/mixins' as m;
 
 .events-information {
-
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   width: 90%;
-  align-items: stretch;
-  @include m.flexLayout('none');
+  margin-left: auto;
+  margin-right: auto;
+
   @include m.responsiveDesign('phone') {
     width: 100%;
-    flex-direction: column;
   }
 
-  &__figure {
-    font-weight: 300;
-    width: 45rem;
-    background-color: #fff;
-    box-shadow: v.$shadow-df;
-    border: v.$border-df;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    margin-right: calc( v.$gap * 2 );
-    @include m.responsiveDesign('phone') {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 2rem
-    }
+  &__grid {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
 
-    &-header {
-      @include m.flexLayout('space-between');
-    }
-
-    &-boxicon {
-      @include m.flexLayout('center');
-      width: 6rem;
-      height: 6rem;
-      margin-left: 1rem;
-      margin-top: -7rem;
-      background-color: v.$color-text-shade;
-      border-radius: 10px;
-      box-shadow: v.$shadow-df;
-    }
-
-    &-icon {
-      font-size: 3rem;
-      color: #fff;
-    }
-
-    &-category {
-      @include m.flexLayout('column-center');
-      gap: 0;
-      align-items: flex-end;
-    }
-
-    &-title {
-      color: v.$color-main-shade;
-      font-size: 1.4rem;
-    }
-
-    &-number {
-      margin-top: -10px;
-      font-weight: bold;
-      font-size: 3.2rem;
-    }
-
-    &-information {
-      padding: 1rem 0;
-      font-size: 1.4rem;
-      border-top: v.$border-df;
-
-      span {
-        font-weight: bold;
-        color: v.$color-brown;
-      }
-    }
-
-  }
-  
-  &__container {
-
-    width: 100%;
-    font-weight: 300;
-    background-color: #fff;
-    box-shadow: v.$shadow-df;
-    border: v.$border-df;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    font-size: 1.4rem;
-
-    &-title {
-      color: v.$color-main;
-      font-family: v.$font-text;
-      font-size: 1.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: .5rem;
-      @include m.responsiveDesign('tab-land') {
-        margin-bottom: 2rem;
-      }
-      @include m.responsiveDesign('phone') {
-        padding: 1rem 0;
-        letter-spacing: 1px;
-      }
-    }
-
-  }
-
-  &__instru {
-    @include m.flexLayout('space-between');
-    @include m.responsiveDesign('phone') {
+    @include m.responsiveDesign('tab-land') {
       flex-direction: column;
     }
+
+    @include m.responsiveDesign('phone') {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+
+  &__box {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(139, 108, 89, 0.14);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    padding: 2.2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &__header {
+    margin-bottom: 1.2rem;
+  }
+
+  &__title {
+    font-family: v.$font-heading;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: v.$color-text-shade;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: v.$color-main;
+
+    span {
+      font-weight: 400;
+      color: v.$color-text-tint;
+    }
+  }
+
+  &__text {
+    font-size: 1.3rem;
+    color: v.$color-text-tint;
+    margin: 0;
+    line-height: 1.5;
   }
 
   &__list {
-    @include m.flexLayout('column');
-    align-items: flex-start;
-    @include m.responsiveDesign('tab-land') {
-      display: none;
-    }
-    @include m.responsiveDesign('phone') {  
-      display: block;
-      margin-bottom: 2rem;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    padding: 0;
+    list-style: none;
   }
 
   &__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: v.$color-text-shade;
+    line-height: 1.4;
+
     @include m.responsiveDesign('phone') {
       font-size: 1.2rem;
     }
   }
 
   &__icon {
-    margin-right: 1.2rem;
+    font-size: 1.8rem;
+    color: v.$color-main;
+    flex-shrink: 0;
   }
 
   &__buttons {
-    align-self: flex-end;
-    @include m.flexLayout('column');
+    align-self: flex-start;
+    margin-top: auto;
   }
 
   &__button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 
     i {
-      font-size: 2rem;
-      margin-right: .5rem;
+      font-size: 1.8rem;
     }
   }
-
 }

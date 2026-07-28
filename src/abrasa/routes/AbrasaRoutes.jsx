@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import {
+  EventConfirmationPage,
   EventPage,
   EventsPage,
   ProfilePage,
@@ -13,6 +14,7 @@ export const AbrasaRoutes = () => {
       <Route path="profile" element={<ProfilePage />} />
       <Route path="/" element={<EventsPage />} />
       <Route path="events/:id" element={<EventPage />} />
+      <Route path="event-confirmations/:id" element={<EventConfirmationPage />} />
       <Route path="stadistics" element={<StadisticsPage />} />
       <Route path="scanTicket/:id" element={<ScanTicketPage />} />
       <Route path="/*" element={<Navigate to="/" />} />

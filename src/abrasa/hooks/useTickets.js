@@ -15,10 +15,10 @@ import {
 export const useTickets = () => {
   const dispatch = useDispatch();
 
-  const { tickets, page, total, totalPages, totalAdults, totalKids, totalAdultsCounter, totalKidsCounter } = useSelector((store) => store.tickets);
+  const { tickets, page, total, totalPages, totalAdults, totalKids, totalAdultsCounter, totalKidsCounter, isLoading } = useSelector((store) => store.tickets);
 
   const getAllTickets = () => {
-    dispatch( startGettingAllTickets() );
+    // dispatch( startGettingAllTickets() );
   }
 
   const getTicketsByEvent = (config = {}) => {
@@ -61,7 +61,7 @@ export const useTickets = () => {
 
   const getTotalPages = () => {
     let numberPages = 0;
-    numberPages = Math.ceil(total / 15);
+    numberPages = Math.ceil(total / 30);
     dispatch(setTotalPages(numberPages));
   };
 
@@ -74,6 +74,7 @@ export const useTickets = () => {
     totalAdultsCounter,
     totalKids,
     totalKidsCounter,
+    isLoading,
 
     // METHODS
     getAllTickets,

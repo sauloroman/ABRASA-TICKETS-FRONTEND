@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { useEvents } from '../../../../hooks';
 import { useUI } from '../../../../../hooks';
+import { useAuthentication } from '../../../../../auth/hooks';
 
 export const EventsInformation = () => {
-  const { filter, events, total } = useEvents();
+  const { filter, total } = useEvents();
   const { openModal } = useUI();
+  const { user } = useAuthentication();
 
   const dynamicTitle = useMemo(() => {
     switch (filter) {
@@ -25,56 +27,48 @@ export const EventsInformation = () => {
 
   return (
     <section className="events-information">
-      <figure className="events-information__figure">
-        <header className="events-information__figure-header">
-          <div className="events-information__figure-boxicon">
-            <i className="bx bx-party events-information__figure-icon"></i>
-          </div>
-          <div className="events-information__figure-category">
-            <p className="events-information__figure-title">{dynamicTitle}</p>
-            <p className="events-information__figure-number">
-              {filter === 'todos' ? total : events.length}
+      <div className="events-information__grid">
+        <div className="events-information__box">
+          <header className="events-information__header">
+            <h2 className="events-information__title">{dynamicTitle}</h2>
+          </header>
+          <div className="events-information__container">
+            <p className="events-information__number">
+              {total} <span> {total === 1 ? 'evento' : 'eventos'}</span>
+            </p>
+            <p className="events-information__text">
+              Administración de todos tus eventos en tiempo real.
             </p>
           </div>
-        </header>
-        <div className="events-information__figure-information">
-          {events.length ? (
-            <p>
-              Próximo evento: <span>10/03/2024</span>
-            </p>
-          ) : (
-            <p>Tu próximo evento será genial</p>
-          )}
         </div>
-      </figure>
-      <div className="events-information__container">
-        <h2 className="events-information__container-title">{dynamicTitle}</h2>
 
-        <div className="events-information__instru">
-          <ul className="events-information__list">
-            <li className="events-information__item">
-              <i className="bx bx-check-circle events-information__icon"></i>
-              Presiona sobre uno de tus eventos para ver todos los detalles
-            </li>
-            <li className="events-information__item">
-              <i className="bx bx-check-circle events-information__icon"></i>
-              Puedes crear un nuevo evento.
-            </li>
-            <li className="events-information__item">
-              <i className="bx bx-check-circle events-information__icon"></i>
-              Puedes editar algún evento.
-            </li>
-          </ul>
-          <div className="events-information__buttons">
-            <button
-              onClick={() => openModal('eventsPageModal', 'createEvent')}
-              className="btn btn--outline events-information__button"
-            >
-              <i className="bx bx-plus"></i>
-              Crear Evento
-            </button>
+        {user?.role !== 'Cliente' && (
+          <div className="events-information__box">
+            <ul className="events-information__list">
+              <li className="events-information__item">
+                <i className="bx bx-check-circle events-information__icon"></i>
+                Presiona sobre uno de tus eventos para ver todos los detalles
+              </li>
+              <li className="events-information__item">
+                <i className="bx bx-check-circle events-information__icon"></i>
+                Puedes crear un nuevo evento.
+              </li>
+              <li className="events-information__item">
+                <i className="bx bx-check-circle events-information__icon"></i>
+                Puedes editar algún evento.
+              </li>
+            </ul>
+            <div className="events-information__buttons">
+              <button
+                onClick={() => openModal('eventsPageModal', 'createEvent')}
+                className="btn btn--outline events-information__button"
+              >
+                <i className="bx bx-plus"></i>
+                Crear Evento
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { authSlice } from './auth/auth.slice';
 import { profileSlice } from './abrasa/profile/profile.slice';
 import { eventsSlice } from './abrasa/events/events.slice';
 import { ticketsSlice } from './abrasa/tickets/tickets.slice';
+import { confirmationsSlice } from './abrasa/confirmations/confirmations.slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     profile: profileSlice.reducer,
     events: eventsSlice.reducer,
     tickets: ticketsSlice.reducer,
+    confirmations: confirmationsSlice.reducer,
   },
 });

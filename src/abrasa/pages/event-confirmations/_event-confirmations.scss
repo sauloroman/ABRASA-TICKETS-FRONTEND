@@ -1,0 +1,1040 @@
+@use '../../../scss/abstracts/variables' as v;
+@use '../../../scss/abstracts/mixins' as m;
+
+.event-confirmations-page {
+    width: 100%;
+
+    &__grid {
+        width: 95%;
+        margin: 2rem auto 3rem auto;
+        position: relative;
+        display: flex;
+        gap: 2.5rem;
+
+        @include m.responsiveDesign('tab-land') {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__main {
+        flex-basis: 78%;
+
+        @include m.responsiveDesign('tab-land') {
+            flex-basis: 100%;
+            width: 100%;
+        }
+    }
+
+    &__sidebar {
+        flex-basis: 22%;
+
+        @include m.responsiveDesign('tab-land') {
+            flex-basis: 100%;
+            width: 100%;
+        }
+    }
+}
+
+/* Header Component (Diseño Senior Luxury ABRASA) */
+.confirmations-header {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.5rem;
+
+    &__cover {
+        height: 22rem;
+        width: calc(100% - 4rem);
+        margin: 2rem auto 0 auto;
+        position: relative;
+        border-radius: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+        &-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(31, 23, 21, 0.3) 0%, rgba(31, 23, 21, 0.85) 100%);
+        }
+
+        &-default {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, v.$color-main-shade 0%, v.$color-main 60%, v.$color-golden-tint 100%);
+        }
+    }
+
+    &__card-container {
+        width: 95%;
+        margin: -18rem auto 0 auto;
+        position: relative;
+        z-index: 5;
+    }
+
+    &__card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        padding: 2.5rem 3rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border: v.$border-df;
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    &__back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background-color: v.$color-light-tint;
+        color: v.$color-text-shade;
+        border: 1px solid v.$color-brown;
+        padding: 0.7rem 1.6rem;
+        border-radius: 30px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        &:hover {
+            background-color: v.$color-main;
+            color: v.$color-white;
+            border-color: v.$color-main;
+            transform: translateX(-3px);
+        }
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: v.$color-red-tint;
+        color: v.$color-red-shade;
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+
+    &__hero {
+        padding-bottom: 0.4rem;
+    }
+
+    &__subtitle {
+        display: block;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        color: v.$color-golden;
+        margin-bottom: 0.4rem;
+    }
+
+    &__title {
+        font-family: v.$font-heading;
+        font-size: 3rem;
+        font-weight: 700;
+        color: v.$color-text-shade;
+        margin: 0;
+        line-height: 1.2;
+
+        @include m.responsiveDesign('phone') {
+            font-size: 2.2rem;
+        }
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        &-info {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        &-icon {
+            font-size: 2.2rem;
+            color: v.$color-red;
+            background: v.$color-light-tint;
+            padding: 0.8rem;
+            border-radius: 10px;
+        }
+
+        &-label {
+            display: block;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: v.$color-text-tint;
+            font-weight: 600;
+        }
+
+        &-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: v.$color-text-shade;
+        }
+    }
+
+    &__search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 280px;
+        max-width: 440px;
+
+        @include m.responsiveDesign('phone') {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    &__search-icon {
+        position: absolute;
+        left: 1.4rem;
+        font-size: 2rem;
+        color: v.$color-main;
+        pointer-events: none;
+    }
+
+    &__search-input {
+        width: 100%;
+        padding: 1rem 3.8rem 1rem 4.2rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: v.$color-text-shade;
+        background-color: v.$color-light-tint;
+        border: 1.5px solid v.$color-brown;
+        border-radius: 30px;
+        outline: none;
+        transition: all 0.25s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+        &::placeholder {
+            color: #8c8c92;
+            font-weight: 400;
+        }
+
+        &:focus {
+            background-color: #ffffff;
+            border-color: v.$color-main;
+            box-shadow: 0 4px 16px rgba(98, 54, 55, 0.15);
+        }
+    }
+
+    &__search-spinner {
+        position: absolute;
+        right: 1.4rem;
+        font-size: 1.8rem;
+        color: v.$color-main;
+    }
+
+    &__search-clear {
+        position: absolute;
+        right: 1.2rem;
+        background: none;
+        border: none;
+        color: v.$color-text-tint;
+        font-size: 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2rem;
+        border-radius: 50%;
+
+        &:hover {
+            color: v.$color-main;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    &__btn-group {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 0.3rem;
+    }
+
+    &__link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: v.$color-main;
+        color: v.$color-white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: v.$color-main-shade;
+        }
+    }
+
+    &__copy-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #ffffff;
+        color: v.$color-text-shade;
+        border: 1px solid #ced4da;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: v.$color-red-tint;
+            border-color: v.$color-red-tint;
+            color: v.$color-red-shade;
+        }
+
+        i {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__stats {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem;
+        margin-top: 0.8rem;
+        padding-top: 1rem;
+
+        @include m.responsiveDesign('tab-port') {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include m.responsiveDesign('phone') {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__stat-card {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.2rem 1.6rem;
+        background-color: v.$color-light-tint;
+        border-radius: 12px;
+        border: 1px solid rgba(139, 108, 89, 0.12);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    &__stat-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 4.8rem;
+        height: 4.8rem;
+        border-radius: 10px;
+        background: #ffffff;
+        color: v.$color-main;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+
+        i {
+            font-size: 2.6rem;
+        }
+    }
+
+    &__stat-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__stat-label {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: v.$color-text-tint;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+    }
+
+    &__stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: v.$color-text-shade;
+    }
+}
+
+/* Stats Component (Estilo lateral ABRASA) */
+.confirmations-stats {
+    @include m.boxStyle();
+    margin-bottom: 2rem;
+
+    &__title {
+        @include m.tableTitlePage();
+    }
+
+    &__icon {
+        @include m.tableTitleIcon();
+    }
+
+    &__container {
+        width: 100%;
+    }
+
+    &__stat-main {
+        width: 100%;
+        font-size: 1.4rem;
+        margin: 1.2rem 0 2rem 0;
+
+        span {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+
+        &--avg {
+            margin: 1.5rem 0 0 0;
+        }
+    }
+
+    &__box {
+        margin-bottom: 1.5rem;
+
+        &--avg {
+            margin-bottom: 0;
+            border-top: v.$border-df;
+            padding-top: 0.5rem;
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        font-family: v.$font-text;
+        letter-spacing: 0px;
+        text-transform: uppercase;
+    }
+
+    &__info {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__stat {
+        flex: 1;
+        font-size: 1.3rem;
+        text-align: center;
+        line-height: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-radius: 10px;
+        border: v.$border-df;
+
+        span {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0;
+        }
+    }
+
+    &__add-btn {
+        width: 100%;
+        margin-top: 2rem;
+        padding: 1.2rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+
+        i {
+            font-size: 1.8rem;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+/* Confirmations Table Component */
+.confirmations-table-container {
+    @include m.boxStyle();
+
+    .confirmations-table__header-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .confirmations-table__page-btn {
+        width: 15rem;
+    }
+
+    .confirmations-table__search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        background-color: #ffffff;
+        padding: 1.2rem 1.6rem;
+        border-radius: 12px;
+        border: 2px solid v.$color-brown;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+        transition: all 0.25s ease;
+
+        &:focus-within {
+            border-color: v.$color-main;
+            box-shadow: 0 4px 20px rgba(98, 54, 55, 0.15);
+        }
+
+        @include m.responsiveDesign('phone') {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+
+    .confirmations-table__search-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    .confirmations-table__search-icon {
+        position: absolute;
+        left: 1.2rem;
+        font-size: 2.2rem;
+        color: v.$color-main;
+        pointer-events: none;
+    }
+
+    .confirmations-table__search-input {
+        width: 100%;
+        padding: 1rem 4rem 1rem 4.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: v.$color-text-shade;
+        background-color: v.$color-light-tint;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        outline: none;
+        transition: all 0.2s ease;
+
+        &::placeholder {
+            color: #9e9ea3;
+            font-weight: 400;
+        }
+
+        &:focus {
+            background-color: #ffffff;
+            border-color: v.$color-main-tint;
+        }
+    }
+
+    .confirmations-table__search-spinner {
+        position: absolute;
+        right: 1.4rem;
+        font-size: 2rem;
+        color: v.$color-main;
+    }
+
+    .confirmations-table__search-clear {
+        position: absolute;
+        right: 1.2rem;
+        background: none;
+        border: none;
+        color: v.$color-text-tint;
+        font-size: 2.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2rem;
+        border-radius: 50%;
+
+        &:hover {
+            color: v.$color-main;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    .confirmations-table__search-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+
+        @include m.responsiveDesign('phone') {
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    .confirmations-table__counter-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background-color: v.$color-light-tint;
+        color: v.$color-main-shade;
+        padding: 0.8rem 1.4rem;
+        border-radius: 20px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        border: 1px solid v.$color-brown;
+
+        i {
+            font-size: 1.8rem;
+            color: v.$color-main;
+        }
+    }
+
+    .confirmations-table__export-btn {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.3rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .confirmations-table__wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-bottom: 2rem;
+    }
+
+    .confirmations-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        @include m.responsiveDesign('phone') {
+            min-width: 100rem;
+        }
+
+        th {
+            background-color: v.$color-red-tint;
+            color: v.$color-text-shade;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border: v.$border-df;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 1.2rem 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+            border: v.$border-df;
+            color: v.$color-text-shade;
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background-color: rgba(161, 101, 100, 0.04);
+        }
+    }
+
+    .confirmations-table__index {
+        font-weight: 600;
+        color: v.$color-text-tint;
+        width: 4rem;
+    }
+
+    .confirmations-table__name {
+        text-align: left !important;
+        min-width: 28rem;
+
+        .confirmations-table__avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 50%;
+            background: v.$color-red-tint;
+            color: v.$color-red-shade;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+
+        .confirmations-table__user-info {
+            display: inline-block;
+            font-weight: 300;
+            vertical-align: middle;
+            color: v.$color-text-shade;
+            white-space: nowrap;
+        }
+    }
+
+    .confirmations-table__wa-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: v.$color-text-shade;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: v.$color-light-tint;
+            color: v.$color-main;
+        }
+
+        i {
+            font-size: 1.6rem;
+            color: #25D366;
+        }
+    }
+
+    .confirmations-table__badge {
+        display: inline-block;
+        padding: 0.2rem 0.8rem;
+        font-weight: 600;
+        font-size: 1.3rem;
+        color: v.$color-text-shade;
+
+        &--total {
+            font-weight: 700;
+            color: v.$color-red-shade;
+        }
+    }
+
+    .confirmations-table__badge-attend {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+
+        &--yes {
+            background-color: rgba(43, 138, 62, 0.08);
+            color: #2b8a3e;
+            border: 1px solid rgba(43, 138, 62, 0.2);
+        }
+
+        &--no {
+            background-color: rgba(197, 34, 31, 0.08);
+            color: #c5221f;
+            border: 1px solid rgba(197, 34, 31, 0.2);
+        }
+    }
+
+    .confirmations-table__date {
+        font-size: 1.2rem;
+        color: v.$color-text-tint;
+        white-space: nowrap;
+    }
+
+    .confirmations-table__action-btn {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        padding: 0.6rem;
+        border-radius: 50%;
+        color: v.$color-text-tint;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: v.$color-red;
+            background-color: v.$color-red-tint;
+        }
+    }
+
+    .confirmations-table__loading,
+    .confirmations-table__empty {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: v.$color-text-tint;
+
+        i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: v.$color-red;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: v.$color-text;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+/* Modal Overlay & Card for Confirmations */
+.confirmations-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.confirmations-modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 44rem;
+    width: 100%;
+    padding: 2.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.2s ease-out;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        i {
+            font-size: 2.8rem;
+            color: v.$color-red;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: v.$color-text-shade;
+        }
+    }
+
+    &__body {
+        font-size: 1.4rem;
+        color: v.$color-text;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    &__warning {
+        display: block;
+        margin-top: 0.8rem;
+        font-size: 1.2rem;
+        color: v.$color-red;
+        font-weight: 600;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1.2rem;
+    }
+
+    &__confirm-delete {
+        background: v.$color-red !important;
+        color: v.$color-white !important;
+        border-color: v.$color-red !important;
+
+        &:hover {
+            background: v.$color-red-shade !important;
+        }
+    }
+}
+
+/* Event Info Sidebar Component */
+.event-info-sidebar {
+    @include m.boxStyle();
+    margin-bottom: 2rem;
+
+    &__title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: v.$color-main;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        padding-bottom: 1.2rem;
+
+        i {
+            font-size: 2.2rem;
+        }
+    }
+
+    &__image-container {
+        width: 100%;
+        height: 16rem;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.2rem;
+
+        i {
+            font-size: 2.2rem;
+            color: v.$color-red;
+            background: v.$color-light-tint;
+            padding: 0.8rem;
+            border-radius: 10px;
+            margin-top: 0.2rem;
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: v.$color-text-tint;
+        font-weight: 600;
+    }
+
+    &__value {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: v.$color-text-shade;
+        margin-top: 0.2rem;
+
+        &--desc {
+            font-weight: 400;
+            line-height: 1.5;
+            color: v.$color-text;
+        }
+    }
+
+    &__invitation {
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        padding-top: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__link-box {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    &__link {
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        background-color: v.$color-main;
+        color: v.$color-white;
+        padding: 0.8rem 1.6rem;
+        border-radius: 6px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: v.$color-main-shade;
+        }
+    }
+
+    &__copy-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        color: v.$color-text-shade;
+        border: 1px solid #ced4da;
+        padding: 0.8rem;
+        border-radius: 6px;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: v.$color-red-tint;
+            border-color: v.$color-red-tint;
+            color: v.$color-red-shade;
+        }
+    }
+
+    &__copied-toast {
+        display: block;
+        font-size: 1.2rem;
+        color: #2b8a3e;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+}

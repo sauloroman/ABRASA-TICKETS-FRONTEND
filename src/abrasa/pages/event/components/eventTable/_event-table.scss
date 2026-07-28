@@ -17,6 +17,119 @@
     }
   }
 
+  /* Prominent High-Visibility Search Hero Bar */
+  &__search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background-color: #ffffff;
+    padding: 1.2rem 1.6rem;
+    border-radius: 12px;
+    border: 2px solid v.$color-brown;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    transition: all 0.25s ease;
+
+    &:focus-within {
+      border-color: v.$color-main;
+      box-shadow: 0 4px 20px rgba(98, 54, 55, 0.15);
+    }
+
+    @include m.responsiveDesign('phone') {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 1.2rem;
+    font-size: 2.2rem;
+    color: v.$color-main;
+    pointer-events: none;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 1rem 4rem 1rem 4.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: v.$color-text-shade;
+    background-color: v.$color-light-tint;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: #9e9ea3;
+      font-weight: 400;
+    }
+
+    &:focus {
+      background-color: #ffffff;
+      border-color: v.$color-main-tint;
+    }
+  }
+
+  &__search-spinner {
+    position: absolute;
+    right: 1.4rem;
+    font-size: 2rem;
+    color: v.$color-main;
+  }
+
+  &__search-clear {
+    position: absolute;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: v.$color-text-tint;
+    font-size: 2.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    border-radius: 50%;
+
+    &:hover {
+      color: v.$color-main;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &__search-counter {
+    display: flex;
+    align-items: center;
+  }
+
+  &__counter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: v.$color-light-tint;
+    color: v.$color-main-shade;
+    padding: 0.8rem 1.4rem;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border: 1px solid v.$color-brown;
+
+    i {
+      font-size: 1.8rem;
+      color: v.$color-main;
+    }
+  }
+
   &__icon {
     @include m.tableTitleIcon();
   }
