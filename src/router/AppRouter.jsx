@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { AbrasaRoutes } from '../abrasa/routes/AbrasaRoutes';
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
 import { useAuthentication } from '../auth/hooks';
+import { Spinner } from '../components';
 
 export const AppRouter = () => {
   
@@ -12,6 +13,10 @@ export const AppRouter = () => {
     renewToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (status === 'checking') {
+    return <Spinner />;
+  }
 
   return (
     <Routes>

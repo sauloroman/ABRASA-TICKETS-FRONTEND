@@ -32,6 +32,7 @@ export const useAuthentication = () => {
 
   const logoutUser = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('lastPath');
     dispatch( logout() );
   }
 
