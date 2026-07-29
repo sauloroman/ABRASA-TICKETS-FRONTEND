@@ -7,53 +7,73 @@
   height: 100%;
   width: 25rem;
   position: fixed;
-  transition: all 0.4s ease-out;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  z-index: 99;
 
   &__show {
+    transform: translateX(0);
+    opacity: 1;
+
     @include m.responsiveDesign('tab-land') {
       height: fit-content;
       transform: translate(2%, 1%);
-      z-index: 9;
+      z-index: 99;
     }
   }
 
   &__hide {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+
     @include m.responsiveDesign('tab-land') {
       height: fit-content;
-      z-index: 9;
+      z-index: 99;
       transform: translate(-105%, 1%);
     }
   }
 
   &__button {
-    display: none;
-    opacity: 0;
-    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$color-main;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    z-index: 100;
+    top: 2rem;
+    left: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.08);
+      background-color: v.$color-main-tint;
+    }
 
     @include m.responsiveDesign('tab-land') {
-      opacity: 1;
-      pointer-events: all;
-      background-color: v.$color-main;
-      width: 5rem;
-      height: 5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
-      position: fixed;
-      z-index: 2;
       bottom: 2%;
       right: 2%;
+      left: auto;
+      top: auto;
+      width: 5rem;
+      height: 5rem;
     }
 
     @include m.responsiveDesign('phone') {
       top: 2%;
       right: 2%;
+      left: auto;
+      bottom: auto;
     }
 
     &-icon {
-      font-size: 3rem;
+      font-size: 2.8rem;
       color: v.$color-white;
     }
   }
@@ -92,11 +112,6 @@
     margin-bottom: calc(v.$gap * 2);
     border-bottom: v.$border-df;
     padding-bottom: 2rem;
-    @include m.responsiveDesign('tab-land') {
-      img {
-        display: none;
-      }
-    }
   }
 
   &__title {
@@ -107,12 +122,16 @@
     font-weight: bold;
   }
 
-  &__image {
-    background: #fff;
-    border: 1px solid #555;
-    width:5rem;
-    height: 5rem;
-    border-radius: 50%;
+  &__toggle-icon {
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      color: v.$color-main-tint;
+      transform: scale(1.15);
+    }
   }
 
   &__list {

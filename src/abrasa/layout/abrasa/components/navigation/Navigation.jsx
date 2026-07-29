@@ -1,12 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthentication } from '../../../../../auth/hooks';
-import abrasaLogo from '../../../../../assets/img/favicon.png';
-import { useProfile } from '../../../../hooks';
 import { useUI } from '../../../../../hooks';
 
 export const Navigation = () => {
   const { logoutUser } = useAuthentication();
-  const { profile } = useProfile();
   const {
     openSlide,
     closeSlide,
@@ -25,11 +22,11 @@ export const Navigation = () => {
         </div>
         <figure className="navigation__figure">
           <span className="navigation__title">Abrasa</span>
-          <img
-            src={profile?.image ? profile?.image : abrasaLogo}
-            alt="Abrasa logo"
-            className="navigation__image"
-          />
+          <i
+            onClick={closeSlide}
+            className="bx bx-menu navigation__toggle-icon"
+            title="Contraer menú"
+          ></i>
         </figure>
 
         <ul className="navigation__list">
@@ -61,9 +58,11 @@ export const Navigation = () => {
           </li>
         </ul>
       </nav>
-      <div onClick={openSlide} className="navigation__button">
-        <i className="bx bx-menu navigation__button-icon"></i>
-      </div>
+      {!isOpen && (
+        <div onClick={openSlide} className="navigation__button" title="Abrir menú">
+          <i className="bx bx-menu navigation__button-icon"></i>
+        </div>
+      )}
     </>
   );
 };

@@ -7,7 +7,7 @@ import { Navigation } from "./components/navigation/Navigation"
 
 export const LayoutAbrasa = ({ children }) => {
 
-  const { isLoading, closeSlide } = useUI();
+  const { isLoading, closeSlide, slide: { isOpen } } = useUI();
 
   useEffect(() => {
     closeSlide();
@@ -17,7 +17,7 @@ export const LayoutAbrasa = ({ children }) => {
   return (
     <> 
       <Navigation />
-      <div className="layout-abrasa animate__animated animate__fadeIn">
+      <div className={`layout-abrasa ${!isOpen ? 'layout-abrasa--full' : ''} animate__animated animate__fadeIn`}>
         <div className="layout-abrasa__flex">
           <div className="layout-abrasa__container">
             {
@@ -30,8 +30,8 @@ export const LayoutAbrasa = ({ children }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 LayoutAbrasa.propTypes = {
   children: PropTypes.node,

@@ -4,6 +4,11 @@
 .layout-abrasa {  
   height: 100vh;
   margin-left: 25rem;
+  transition: margin-left 0.4s ease-out;
+
+  &--full {
+    margin-left: 0;
+  }
 
   @include m.responsiveDesign('tab-land') {
     margin-left: 0;

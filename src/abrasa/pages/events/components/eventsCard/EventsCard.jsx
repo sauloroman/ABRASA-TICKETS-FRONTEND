@@ -35,7 +35,8 @@ export const EventsCard = ({ id, image, eventType, description, eventDate, name 
       </div>
       <footer className="events-card__footer">
         <div className="events-card__footer-buttons">
-          <Link to={`/events/${id}`} className='events-card__button btn btn--outline'>Ver evento</Link>
+          <Link to={`/events/${id}`} className='events-card__button btn btn--outline'>Ver detalles</Link>
+          <Link to={`/event-confirmations/${id}`} className='events-card__button btn btn--outline'>Confirmaciones</Link>
           {user?.role !== 'Cliente' && (
             <button onClick={ () => openModal('confirmModal', 'deleteEvent', id ) } className='events-card__button btn btn--outline'>Eliminar</button>
           )}
