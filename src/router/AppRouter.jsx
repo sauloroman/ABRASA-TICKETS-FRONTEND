@@ -10,6 +10,7 @@ export const AppRouter = () => {
 
   useEffect(() => {
     renewToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

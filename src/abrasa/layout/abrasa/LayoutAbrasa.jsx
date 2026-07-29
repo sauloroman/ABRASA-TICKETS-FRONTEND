@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { Spinner } from "../../../components";
 import { useUI } from "../../../hooks/useUI"
 import { Footer } from "./components/footer/Footer"
@@ -10,6 +11,7 @@ export const LayoutAbrasa = ({ children }) => {
 
   useEffect(() => {
     closeSlide();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [] );
 
   return (
@@ -30,3 +32,8 @@ export const LayoutAbrasa = ({ children }) => {
     </>
   )
 }
+
+LayoutAbrasa.propTypes = {
+  children: PropTypes.node,
+};
+

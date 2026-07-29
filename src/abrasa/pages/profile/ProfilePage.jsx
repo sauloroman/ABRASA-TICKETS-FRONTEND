@@ -14,6 +14,7 @@ export const ProfilePage = () => {
   useEffect( () => {
     const profileId = user?.profile;
     getProfile( profileId );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [] );
 
   return (

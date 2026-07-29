@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { SwiperCom } from './components/swiperCom/SwiperCom';
 import loginLogo from '../../../assets/img/logo-light.png';
 import { useUI } from '../../../hooks';
@@ -40,15 +41,27 @@ export const LayoutCredentials = ({
     
         </div>
 
-        <p className="layout-credentials__disclaimer text-center">
-          {disclamerPage}
-          <Link className="layout-credentials__disclaimer-link" to={`${navigatePage}`}>
-            {navigateTextPage}
-          </Link>
-        </p>
+        {disclamerPage && (
+          <p className="layout-credentials__disclaimer text-center">
+            {disclamerPage}{' '}
+            <Link className="layout-credentials__disclaimer-link" to={`${navigatePage}`}>
+              {navigateTextPage}
+            </Link>
+          </p>
+        )}
       </section>
 
       <SwiperCom />
     </div>
   );
 };
+
+LayoutCredentials.propTypes = {
+  children: PropTypes.node,
+  titlePage: PropTypes.string,
+  descriptionPage: PropTypes.string,
+  disclamerPage: PropTypes.string,
+  navigatePage: PropTypes.string,
+  navigateTextPage: PropTypes.string,
+};
+

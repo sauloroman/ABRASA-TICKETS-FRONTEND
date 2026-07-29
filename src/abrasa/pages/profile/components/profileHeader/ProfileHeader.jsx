@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useUI } from "../../../../../hooks";
 
 export const ProfileHeader = ({ profile }) => {
@@ -23,14 +24,14 @@ export const ProfileHeader = ({ profile }) => {
             ? ( <img src={profile?.image} alt="User image" /> )
             : ( 
               <div className="profile-header__default">
-                <p>{ profile?.user.name[0] }</p>
+                <p>{ profile?.user?.name?.[0] }</p>
               </div> 
             )
           }
         
         </figure>
         <div className="profile-header__info">
-          <h1 className="profile-header__title">{profile?.user.name}</h1>
+          <h1 className="profile-header__title">{profile?.user?.name}</h1>
           <p className="profile-header__profession">{ profile?.profession }</p>
         </div>
       </div>
@@ -48,3 +49,14 @@ export const ProfileHeader = ({ profile }) => {
     </header>
   );
 };
+
+ProfileHeader.propTypes = {
+  profile: PropTypes.shape({
+    image: PropTypes.string,
+    profession: PropTypes.string,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
+};
+

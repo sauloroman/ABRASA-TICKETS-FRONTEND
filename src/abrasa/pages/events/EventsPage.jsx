@@ -20,29 +20,36 @@ export const EventsPage = () => {
 
   useEffect(() => {
 
-    getEventsOfUser( {
-      userID: user.id,
-      page: 1,
-      limit: 6,
-      category: filter,
-    });
+    if (user?.id) {
+      getEventsOfUser( {
+        userID: user.id,
+        page: 1,
+        limit: 6,
+        category: filter,
+      });
+    }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ filter ]);
 
   useEffect(() => {
 
-    getEventsOfUser( {
-      userID: user.id,
-      page: page,
-      limit: 6,
-      category: filter,
-    });
+    if (user?.id) {
+      getEventsOfUser( {
+        userID: user.id,
+        page: page,
+        limit: 6,
+        category: filter,
+      });
+    }
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ page ]);
 
   useEffect(() => {
     getTotalPages();
-  }, [events])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [events]);
 
   return (
     <LayoutAbrasa>

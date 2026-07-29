@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ProfileCover = ( {profile} ) => {
   return (
     <div
@@ -8,4 +10,9 @@ export const ProfileCover = ( {profile} ) => {
     </div>
   );
 };
-``
+
+ProfileCover.propTypes = {
+  profile: PropTypes.shape({
+    coverImage: PropTypes.string,
+  }),
+};

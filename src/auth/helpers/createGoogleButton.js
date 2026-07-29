@@ -1,3 +1,4 @@
+/* global google */
 import { getEnvVariables } from '../../helpers';
 
 const { VITE_GOOGLE_CLIENT_ID: clientId } = getEnvVariables(); 

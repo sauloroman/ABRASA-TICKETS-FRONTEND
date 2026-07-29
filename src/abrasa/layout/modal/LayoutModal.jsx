@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useUI } from "../../../hooks"
 
 export const LayoutModal = ({ children, title = 'Titulo del modal', modalName = ''}) => {
@@ -19,3 +19,10 @@ export const LayoutModal = ({ children, title = 'Titulo del modal', modalName = 
     </div>
   )
 }
+
+LayoutModal.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  modalName: PropTypes.string,
+};
+

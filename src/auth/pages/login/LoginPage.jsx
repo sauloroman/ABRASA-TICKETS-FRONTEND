@@ -48,85 +48,83 @@ export const LoginPage = () => {
 
   useEffect(() => {
     createGoogleButton(loginGoogle);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <LayoutCredentials
       titlePage="Bienvenido de vuelta"
       descriptionPage="El software para la gestión de boletos electrónicos que tu evento social necesitaba. Inicia sesión y dale seguimiento a tus invitados."
-      disclamerPage="No tienes una cuenta?"
-      navigatePage="/auth/register"
-      navigateTextPage="Crea una"
     >
-        <form onSubmit={onLoginUser} className="form">
-          <div className="form__field">
-            <label htmlFor="email" className="form__label">
-              Correo electrónico
-            </label>
+      <form onSubmit={onLoginUser} className="form">
+        <div className="form__field">
+          <label htmlFor="email" className="form__label">
+            Correo electrónico
+          </label>
+          <input
+            value={email}
+            name="email"
+            onChange={onInputChange}
+            autoComplete="off"
+            placeholder="Ingresa tu correo"
+            type="email"
+            id="email"
+            className="form__input"
+          />
+          <span
+            className={`form__span ${
+              !isFormValid && formSubmitted ? 'text-wrong' : null
+            }`}
+          >
+            {emailValid}
+          </span>
+        </div>
+        <div className="form__field">
+          <label htmlFor="password" className="form__label">
+            Contraseña de acceso
+          </label>
+          <div className="form__input form__input--password">
             <input
-              value={email}
-              name="email"
+              value={password}
+              name="password"
               onChange={onInputChange}
-              autoComplete="off"
-              placeholder="Ingresa tu correo"
-              type="email"
-              id="email"
-              className="form__input"
+              placeholder="Ingresa tu contraseña"
+              type={showPassword ? 'password' : 'text'}
+              id="password"
             />
-            <span
-              className={`form__span ${
-                !isFormValid && formSubmitted ? 'text-wrong' : null
+            <i
+              onClick={() => setShowPassword(!showPassword)}
+              className={`bx bx-show form__icon ${
+                showPassword ? 'show-element' : 'hide-element'
               }`}
-            >
-              {emailValid}
-            </span>
-          </div>
-          <div className="form__field">
-            <label htmlFor="password" className="form__label">
-              Contraseña de acceso
-            </label>
-            <div className="form__input form__input--password">
-              <input
-                value={password}
-                name="password"
-                onChange={onInputChange}
-                placeholder="Ingresa tu contraseña"
-                type={showPassword ? 'password' : 'text'}
-                id="password"
-              />
-              <i
-                onClick={() => setShowPassword(!showPassword)}
-                className={`bx bx-show form__icon ${
-                  showPassword ? 'show-element' : 'hide-element'
-                }`}
-              ></i>
-              <i
-                onClick={() => setShowPassword(!showPassword)}
-                className={`bx bx-hide form__icon ${
-                  !showPassword ? 'show-element' : 'hide-element'
-                }`}
-              ></i>
-            </div>
-            <span
-              className={`form__span ${
-                !isFormValid && formSubmitted ? 'text-wrong' : null
+            ></i>
+            <i
+              onClick={() => setShowPassword(!showPassword)}
+              className={`bx bx-hide form__icon ${
+                !showPassword ? 'show-element' : 'hide-element'
               }`}
-            >
-              {passwordValid}
-            </span>
+            ></i>
           </div>
-          <div className="form__forgot">
-            <Link to="/auth/password/enter-email" className="form__forgot-text text-important">
-              Olvidé mi contraseña
-            </Link>
-          </div>
-          <div className="form__button">
-            <button type="submit" className="btn btn--black">
-              Ingresar
-            </button>
-            <div id="buttonDiv"></div>
-          </div>
-        </form>
+          <span
+            className={`form__span ${
+              !isFormValid && formSubmitted ? 'text-wrong' : null
+            }`}
+          >
+            {passwordValid}
+          </span>
+        </div>
+        <div className="form__forgot">
+          <Link to="/auth/password/enter-email" className="form__forgot-text text-important">
+            Olvidé mi contraseña
+          </Link>
+        </div>
+        <div className="form__button">
+          <button type="submit" className="btn btn--black">
+            Ingresar
+          </button>
+          <div id="buttonDiv"></div>
+        </div>
+      </form>
     </LayoutCredentials>
   );
 };

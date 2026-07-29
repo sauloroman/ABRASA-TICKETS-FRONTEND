@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useUI } from '../../../../../hooks';
 import logo from  '../../../../../assets/img/logo-light.png';
 
@@ -26,19 +27,19 @@ export const ProfileInformation = ({ profile }) => {
         <div className="profile-information__grid profile-information__grid--1">
           <div className="profile-information__item">
             <p className="profile-information__item-title">Nombre Completo</p>
-            <p className="profile-information__item-value">{ profile?.user.name }</p>
+            <p className="profile-information__item-value">{ profile?.user?.name }</p>
           </div>
           <div className="profile-information__item">
             <p className="profile-information__item-title">Correo electrónico</p>
-            <p className="profile-information__item-value">{ profile?.user.email }</p>
+            <p className="profile-information__item-value">{ profile?.user?.email }</p>
           </div>
           <div className="profile-information__item">
             <p className="profile-information__item-title">Fecha de creación</p>
-            <p className="profile-information__item-value">{ profile?.user.createdAt.split(',')[0] }</p>
+            <p className="profile-information__item-value">{ profile?.user?.createdAt?.split(',')?.[0] }</p>
           </div>
           <div className="profile-information__item">
             <p className="profile-information__item-title">Hora de creación</p>
-            <p className="profile-information__item-value">{ profile?.user.createdAt.split(',')[1] }</p>
+            <p className="profile-information__item-value">{ profile?.user?.createdAt?.split(',')?.[1] }</p>
           </div>
         </div>
       </div>
@@ -66,3 +67,17 @@ export const ProfileInformation = ({ profile }) => {
     </section>
   );
 };
+
+ProfileInformation.propTypes = {
+  profile: PropTypes.shape({
+    address: PropTypes.string,
+    location: PropTypes.string,
+    phone: PropTypes.string,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+      email: PropTypes.string,
+      createdAt: PropTypes.string,
+    }),
+  }),
+};
+

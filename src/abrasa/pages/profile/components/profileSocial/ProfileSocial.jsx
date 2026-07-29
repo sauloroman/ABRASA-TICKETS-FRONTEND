@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useUI } from "../../../../../hooks";
 
 export const ProfileSocial = ({ profile }) => {
@@ -30,28 +31,28 @@ export const ProfileSocial = ({ profile }) => {
         <h4 className="profile-social__sectionTitle">Redes</h4>
         <div className="profile-social__grid">
           
-          <a href={`${ profile?.website}`} target="_blank" className="profile-social__item">
+          <a href={`${ profile?.website}`} target="_blank" rel="noreferrer" className="profile-social__item">
             <div className="profile-social__item-image">
               <i className='bx bx-world profile-social__item-icon' ></i>
             </div>
             <p className="profile-social__item-name">www.paginauser.com</p>
           </a>
 
-          <a href={`${ profile?.facebook}`} target="_blank" className="profile-social__item">
+          <a href={`${ profile?.facebook}`} target="_blank" rel="noreferrer" className="profile-social__item">
             <div className="profile-social__item-image">
               <i className='bx bxl-facebook profile-social__item-icon' ></i>
             </div>
             <p className="profile-social__item-name">Tu página de Facebook</p>
           </a>
 
-          <a href={`${ profile?.instagram}`} target="_blank" className="profile-social__item">
+          <a href={`${ profile?.instagram}`} target="_blank" rel="noreferrer" className="profile-social__item">
             <div className="profile-social__item-image">
               <i className='bx bxl-instagram profile-social__item-icon' ></i>
             </div>
             <p className="profile-social__item-name">Tu página de Instagram</p>
           </a>
 
-          <a href={`${ profile?.tiktok}`} target="_blank" className="profile-social__item">
+          <a href={`${ profile?.tiktok}`} target="_blank" rel="noreferrer" className="profile-social__item">
             <div className="profile-social__item-image">
               <i className='bx bxl-tiktok profile-social__item-icon' ></i>
             </div>
@@ -64,3 +65,14 @@ export const ProfileSocial = ({ profile }) => {
     </section>
   )
 }
+
+ProfileSocial.propTypes = {
+  profile: PropTypes.shape({
+    bio: PropTypes.string,
+    website: PropTypes.string,
+    facebook: PropTypes.string,
+    instagram: PropTypes.string,
+    tiktok: PropTypes.string,
+  }),
+};
+

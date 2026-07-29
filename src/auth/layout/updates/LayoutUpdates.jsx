@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import logoAbrasa from '../../../assets/img/logo-light.png';
 import { Spinner } from '../../../components/spinner/Spinner';
 import { useUI } from '../../../hooks';
@@ -29,3 +30,10 @@ export const LayoutUpdates = ({
     </section>
   );
 };
+
+LayoutUpdates.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};
+
