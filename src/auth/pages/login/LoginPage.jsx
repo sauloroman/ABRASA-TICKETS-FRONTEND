@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { createGoogleButton } from '../../helpers/';
 import { useForm } from '../../../hooks/useForm';
 import { useAuthentication } from '../../hooks';
 import { LayoutCredentials } from '../../layout';
@@ -33,7 +32,7 @@ export const LoginPage = () => {
     onInputChange,
     onResetForm,
   } = useForm(formData, formValidations);
-  const { loginUser, loginGoogle } = useAuthentication();
+  const { loginUser } = useAuthentication();
 
   const onLoginUser = (e) => {
     e.preventDefault();
@@ -45,11 +44,6 @@ export const LoginPage = () => {
     setFormSubmitted(false);
     onResetForm();
   };
-
-  useEffect(() => {
-    createGoogleButton(loginGoogle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <LayoutCredentials
@@ -122,7 +116,6 @@ export const LoginPage = () => {
           <button type="submit" className="btn btn--black">
             Ingresar
           </button>
-          <div id="buttonDiv"></div>
         </div>
       </form>
     </LayoutCredentials>

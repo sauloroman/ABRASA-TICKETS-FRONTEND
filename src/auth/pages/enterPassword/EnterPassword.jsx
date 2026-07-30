@@ -77,11 +77,10 @@ export const EnterPassword = () => {
           </span>
         </div>
         <div className="form__button">
-            <button type="submit" className="btn btn--black">
-              Cambiar
-            </button>
-            <div id="buttonDiv"></div>
-          </div>
+          <button type="submit" className="btn btn--black">
+            Cambiar
+          </button>
+        </div>
       </form>
     </LayoutUpdates>
   );
