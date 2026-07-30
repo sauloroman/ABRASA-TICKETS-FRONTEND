@@ -778,6 +778,12 @@
         white-space: nowrap;
     }
 
+    .confirmations-table__actions-cell {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
     .confirmations-table__action-btn {
         background: none;
         border: none;
@@ -787,10 +793,22 @@
         color: v.$color-text-tint;
         cursor: pointer;
         transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
 
-        &:hover {
-            color: v.$color-red;
-            background-color: v.$color-red-tint;
+        &--edit {
+            &:hover {
+                color: v.$color-main;
+                background-color: rgba(v.$color-main, 0.12);
+            }
+        }
+
+        &--delete {
+            &:hover {
+                color: v.$color-red;
+                background-color: v.$color-red-tint;
+            }
         }
     }
 
@@ -823,71 +841,281 @@
 .confirmations-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(15, 12, 12, 0.65);
+    backdrop-filter: blur(8px);
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    animation: fadeInModal 0.2s ease-out forwards;
 }
 
 .confirmations-modal {
-    background: #fff;
-    border-radius: 12px;
-    max-width: 44rem;
+    background: #ffffff;
+    border-radius: 16px;
+    max-width: 46rem;
     width: 100%;
-    padding: 2.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.2s ease-out;
+    padding: 3rem 2.8rem 2.4rem 2.8rem;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(225, 225, 225, 0.6);
+    animation: scaleUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
     &__header {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: 1.6rem;
+        margin-bottom: 2rem;
+    }
+
+    &__icon-container {
+        width: 4.8rem;
+        height: 4.8rem;
+        border-radius: 12px;
+        background-color: rgba(v.$color-main, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 1px solid rgba(v.$color-main, 0.15);
 
         i {
-            font-size: 2.8rem;
-            color: v.$color-red;
+            font-size: 2.4rem;
+            color: v.$color-main;
         }
+    }
+
+    &__title-box {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
 
         h3 {
-            font-size: 1.8rem;
+            font-family: v.$font-heading;
+            font-size: 2.1rem;
             font-weight: 700;
             color: v.$color-text-shade;
+            margin: 0;
+            line-height: 1.2;
         }
+    }
+
+    &__subtitle {
+        font-size: 1.25rem;
+        color: v.$color-text-tint;
+        font-weight: 500;
     }
 
     &__body {
-        font-size: 1.4rem;
+        margin-bottom: 2.8rem;
+    }
+
+    &__text {
+        font-size: 1.45rem;
         color: v.$color-text;
-        margin-bottom: 2.5rem;
         line-height: 1.6;
+        margin: 0 0 1.2rem 0;
+
+        strong {
+            color: v.$color-text-shade;
+            font-weight: 700;
+        }
     }
 
     &__warning {
-        display: block;
-        margin-top: 0.8rem;
-        font-size: 1.2rem;
-        color: v.$color-red;
-        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 1.2rem;
+        background-color: v.$color-light-tint;
+        border-left: 3px solid v.$color-main;
+        border-radius: 0 8px 8px 0;
+        font-size: 1.25rem;
+        color: v.$color-main-shade;
+        font-weight: 500;
+
+        i {
+            font-size: 1.6rem;
+            color: v.$color-main;
+        }
     }
 
     &__footer {
         display: flex;
+        align-items: center;
         justify-content: flex-end;
         gap: 1.2rem;
     }
 
-    &__confirm-delete {
-        background: v.$color-red !important;
-        color: v.$color-white !important;
-        border-color: v.$color-red !important;
+    &__btn {
+        width: auto !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 1.1rem 2.2rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        letter-spacing: 0.3px;
 
-        &:hover {
-            background: v.$color-red-shade !important;
+        &--cancel {
+            background-color: #ffffff;
+            color: v.$color-text;
+            border: 1px solid #d5d5d5;
+
+            &:hover {
+                background-color: #f5f5f5;
+                color: v.$color-text-shade;
+                border-color: #c0c0c0;
+            }
         }
+
+        &--delete {
+            background-color: v.$color-main;
+            color: #ffffff;
+            border: 1px solid v.$color-main;
+            box-shadow: 0 4px 12px rgba(98, 54, 55, 0.25);
+
+            i {
+                font-size: 1.6rem;
+            }
+
+            &:hover {
+                background-color: v.$color-main-shade;
+                border-color: v.$color-main-shade;
+                box-shadow: 0 6px 16px rgba(98, 54, 55, 0.35);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(98, 54, 55, 0.2);
+            }
+        }
+
+        &--save {
+            background-color: v.$color-main;
+            color: #ffffff;
+            border: 1px solid v.$color-main;
+            box-shadow: 0 4px 12px rgba(98, 54, 55, 0.25);
+
+            i {
+                font-size: 1.6rem;
+            }
+
+            &:hover {
+                background-color: v.$color-main-shade;
+                border-color: v.$color-main-shade;
+                box-shadow: 0 6px 16px rgba(98, 54, 55, 0.35);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &--edit {
+        max-width: 52rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        margin-top: 1rem;
+    }
+
+    &__form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+
+        @include m.responsiveDesign('phone') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    &__label {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: v.$color-text-shade;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 1rem 1.4rem;
+        font-size: 1.4rem;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        color: v.$color-text;
+        background-color: #fafafa;
+        transition: all 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: v.$color-main;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(v.$color-main, 0.12);
+        }
+    }
+
+    &__radio-group {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        padding-top: 0.4rem;
+    }
+
+    &__radio-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.35rem;
+        cursor: pointer;
+        user-select: none;
+
+        input[type='radio'] {
+            accent-color: v.$color-main;
+            width: 1.6rem;
+            height: 1.6rem;
+            cursor: pointer;
+        }
+    }
+
+    &__error {
+        font-size: 1.25rem;
+        color: v.$color-error;
+        font-weight: 500;
+    }
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUpModal {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(8px);
+    }
+    to {
+        opacity: 1;
     }
 }
 

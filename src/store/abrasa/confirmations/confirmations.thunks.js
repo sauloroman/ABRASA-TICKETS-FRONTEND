@@ -69,6 +69,36 @@ export const startDeletingConfirmationById = (confirmationId = '', { eventId = '
   };
 };
 
+export const startUpdatingConfirmationById = (confirmationId = '', confirmationData = {}, { eventId = '', page = 1, limit = 30 }) => {
+  return async (dispatch) => {
+    dispatch(setIsLoadingConfirmations(true));
+
+    try {
+      await abrasaApi.put(`/open-confirmations/${confirmationId}`, confirmationData);
+      
+      dispatch(setAlert({
+        isAlertOpen: true,
+        contentAlert: 'Confirmación actualizada exitosamente',
+        type: 'success',
+        link: { isLink: false, path: '' }
+      }));
+
+      dispatch(startGettingConfirmationsByEvent({ eventId, page, limit }));
+    } catch (error) {
+      console.log('Error al actualizar confirmación:', error);
+      const errorMsg = error.response?.data?.error || 'No fue posible actualizar la confirmación';
+      dispatch(setAlert({
+        isAlertOpen: true,
+        contentAlert: typeof errorMsg === 'string' ? errorMsg : 'No fue posible actualizar la confirmación',
+        type: 'error',
+        link: { isLink: false, path: '' }
+      }));
+    }
+
+    dispatch(setIsLoadingConfirmations(false));
+  };
+};
+
 export const startCreatingConfirmation = (confirmationData = {}, { eventId = '', page = 1, limit = 30 }) => {
   return async (dispatch) => {
     dispatch(setIsLoadingConfirmations(true));

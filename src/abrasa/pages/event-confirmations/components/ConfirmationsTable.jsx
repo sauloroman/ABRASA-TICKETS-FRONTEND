@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useConfirmations } from '../../../hooks';
-import { useAuthentication } from '../../../../auth/hooks';
 import { formatDate, formatWhatsappLink } from '../helpers/confirmationsHelpers';
+import { ModalUpdateConfirmation } from './modal/ModalUpdateConfirmation';
 
 export const ConfirmationsTable = ({
   confirmations = [],
@@ -18,9 +18,9 @@ export const ConfirmationsTable = ({
 }) => {
   const { id } = useParams();
   const { getConfirmationsByEvent, isExportingPdf, exportConfirmationsPdf } = useConfirmations();
-  const { user } = useAuthentication();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedToDelete, setSelectedToDelete] = useState(null);
+  const [selectedToEdit, setSelectedToEdit] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -116,7 +116,7 @@ export const ConfirmationsTable = ({
                 <th>Niños</th>
                 <th>Total</th>
                 <th>Fecha Registro</th>
-                {user?.role !== 'Cliente' && <th>Acciones</th>}
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -174,17 +174,22 @@ export const ConfirmationsTable = ({
                       </span>
                     </td>
                     <td className="confirmations-table__date">{formatDate(item.registrationDate)}</td>
-                    {user?.role !== 'Cliente' && (
-                      <td className="confirmations-table__actions-cell">
-                        <button
-                          onClick={() => setSelectedToDelete(item)}
-                          className="confirmations-table__action-btn confirmations-table__action-btn--delete"
-                          title="Eliminar confirmación"
-                        >
-                          <i className="bx bx-trash"></i>
-                        </button>
-                      </td>
-                    )}
+                    <td className="confirmations-table__actions-cell">
+                      <button
+                        onClick={() => setSelectedToEdit(item)}
+                        className="confirmations-table__action-btn confirmations-table__action-btn--edit"
+                        title="Editar confirmación"
+                      >
+                        <i className="bx bx-edit-alt"></i>
+                      </button>
+                      <button
+                        onClick={() => setSelectedToDelete(item)}
+                        className="confirmations-table__action-btn confirmations-table__action-btn--delete"
+                        title="Eliminar confirmación"
+                      >
+                        <i className="bx bx-trash"></i>
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
@@ -213,32 +218,52 @@ export const ConfirmationsTable = ({
         </div>
       )}
 
+      {selectedToEdit && (
+        <ModalUpdateConfirmation
+          confirmation={selectedToEdit}
+          onClose={() => setSelectedToEdit(null)}
+          page={page}
+        />
+      )}
+
       {selectedToDelete && (
-        <div className="confirmations-modal-overlay">
-          <div className="confirmations-modal">
+        <div className="confirmations-modal-overlay" onClick={() => setSelectedToDelete(null)}>
+          <div className="confirmations-modal" onClick={(e) => e.stopPropagation()}>
             <div className="confirmations-modal__header">
-              <i className="bx bx-error-circle"></i>
-              <h3>¿Eliminar Confirmación?</h3>
+              <div className="confirmations-modal__icon-container">
+                <i className="bx bx-trash"></i>
+              </div>
+              <div className="confirmations-modal__title-box">
+                <h3>¿Eliminar Confirmación?</h3>
+                <span className="confirmations-modal__subtitle">Confirmación de asistencia</span>
+              </div>
             </div>
-            <p className="confirmations-modal__message">
-              ¿Estás seguro de que deseas eliminar la confirmación de{' '}
-              <strong>
-                {selectedToDelete.firstName} {selectedToDelete.lastName}
-              </strong>
-              ? Esta acción no se puede deshacer.
-            </p>
-            <div className="confirmations-modal__buttons">
+            <div className="confirmations-modal__body">
+              <p className="confirmations-modal__text">
+                ¿Estás seguro de que deseas eliminar la confirmación de{' '}
+                <strong>
+                  {selectedToDelete.firstName} {selectedToDelete.lastName}
+                </strong>
+                ?
+              </p>
+              <div className="confirmations-modal__warning">
+                <i className="bx bx-info-circle"></i> Esta acción no se puede deshacer.
+              </div>
+            </div>
+            <div className="confirmations-modal__footer">
               <button
+                type="button"
                 onClick={() => setSelectedToDelete(null)}
-                className="btn btn--outline confirmations-modal__btn"
+                className="confirmations-modal__btn confirmations-modal__btn--cancel"
               >
                 Cancelar
               </button>
               <button
+                type="button"
                 onClick={handleConfirmDelete}
-                className="btn btn--red confirmations-modal__btn"
+                className="confirmations-modal__btn confirmations-modal__btn--delete"
               >
-                Eliminar
+                <i className="bx bx-trash"></i> Eliminar
               </button>
             </div>
           </div>

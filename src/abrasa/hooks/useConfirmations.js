@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   startCreatingConfirmation,
   startDeletingConfirmationById,
+  startUpdatingConfirmationById,
   startExportingConfirmationsPdf,
   startGettingConfirmationsByEvent,
 } from '../../store/abrasa/confirmations/confirmations.thunks';
@@ -35,6 +36,10 @@ export const useConfirmations = () => {
     dispatch(startDeletingConfirmationById(confirmationId, config));
   };
 
+  const updateConfirmation = (confirmationId = '', confirmationData = {}, config = {}) => {
+    dispatch(startUpdatingConfirmationById(confirmationId, confirmationData, config));
+  };
+
   const exportConfirmationsPdf = ({ eventId = '', eventName = 'evento' }) => {
     dispatch(startExportingConfirmationsPdf({ eventId, eventName }));
   };
@@ -65,6 +70,7 @@ export const useConfirmations = () => {
     getConfirmationsByEvent,
     createConfirmation,
     deleteConfirmation,
+    updateConfirmation,
     exportConfirmationsPdf,
     nextPage,
     prevPage,
