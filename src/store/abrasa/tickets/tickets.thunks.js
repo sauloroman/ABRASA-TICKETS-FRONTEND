@@ -34,6 +34,53 @@ import {
 //   }
 // }
 
+export const startCreatingBulkTickets = (
+  bulkInformation = {},
+  { eventID = '', page: pageUser = 1, limit: limitUser = 30 }
+) => {
+  return async(dispatch) => {
+    dispatch(setIsLoading(true))
+
+    try {
+      
+      const { data: responseData } = await abrasaApi.post('/tickets/bulk', bulkInformation)
+
+      const { data } = await abrasaApi.get(`/tickets/event/${eventID}?page=${pageUser}&limit=${limitUser}`)
+      const { total, page, tickets, adultsQuantity, adultsCounter, kidsQuantity, kidsCounter } = data
+
+      dispatch(setTickets(tickets));
+      dispatch(setPage(page));
+      dispatch(setTotal(total));
+      dispatch(setTotalAdults(adultsQuantity));
+      dispatch(setTotalAdultsCounter(adultsCounter));
+      dispatch(setTotalKids(kidsQuantity));
+      dispatch(setTotalKidsCounter(kidsCounter));
+      dispatch(
+        setAlert({
+          isAlertOpen: true,
+          contentAlert: responseData.msg || 'Boletos creados masivamente con éxito',
+          type: 'success',
+          link: { isLink: false, path: '' },
+        })
+      );
+
+    } catch(error) {
+      console.log(error);
+      const errorMessage = error?.response?.data?.error || 'Error al importar boletos masivamente';
+      dispatch(
+        setAlert({
+          isAlertOpen: true,
+          contentAlert: errorMessage,
+          type: 'error',
+          link: { isLink: false, path: '' },
+        })
+      );
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+}
+
 export const startGettingTicketsOfEvent = ({
   eventID = '',
   page: pageUser = 1,

@@ -8,6 +8,7 @@ import {
   ModalConfirm,
   ModalUpdateTicket,
   ModalConfirmDeleteTickets,
+  ModalImportExcel
 } from '../';
 
 export const ModalEvent = () => {
@@ -27,18 +28,21 @@ export const ModalEvent = () => {
     modalTitle =
       selectedModal === 'createTicket'
         ? 'Crear nuevo boleto'
-        : selectedModal === 'updateTicket'
-        ? 'Actualizar boleto'
-        : selectedModal === 'scanTicket'
-        ? 'Escanear boleto'
-        : selectedModal === 'updateEvent'
-        ? 'Actualizar tu evento'
-        : 'Nueva foto de evento';
+        : selectedModal === 'importExcel'
+          ? 'Importar boletos'
+          : selectedModal === 'updateTicket'
+            ? 'Actualizar boleto'
+            : selectedModal === 'scanTicket'
+              ? 'Escanear boleto'
+              : selectedModal === 'updateEvent'
+                ? 'Actualizar tu evento'
+                : 'Nueva foto de evento';
   }
 
   return (
-    <LayoutModal title={modalTitle} modalName={nameModal}>
+    <LayoutModal title={modalTitle} modalName={nameModal} isLarge={selectedModal === 'importExcel'}>
       {selectedModal === 'createTicket' && <ModalCreateTicket />}
+      {selectedModal === 'importExcel' && <ModalImportExcel />}
       {selectedModal === 'updateTicket' && <ModalUpdateTicket />}
       {selectedModal === 'scanTicket' && <ModalScanTicket />}
       {selectedModal === 'updateEvent' && <ModalUpdateEvent />}

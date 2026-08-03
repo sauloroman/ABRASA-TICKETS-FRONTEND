@@ -46,6 +46,15 @@ export const EventButtons = () => {
             Eliminar Boletos
           </button>
         )}
+        {user?.role !== 'Cliente' && (
+          <button
+            onClick={() => openModal('eventPageModal', 'importExcel')}
+            className="btn btn--outline event-buttons__button"
+          >
+            <i className='bx bx-file-find event-buttons__icon'></i>
+            Importar Excel
+          </button>
+        )}
       </div>
     </div>
   );

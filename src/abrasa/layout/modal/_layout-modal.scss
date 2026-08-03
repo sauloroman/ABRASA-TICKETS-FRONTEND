@@ -20,6 +20,11 @@
     @include m.responsiveDesign('phone') {
       border-radius: 5px;
     }
+
+    &--large {
+      width: 100rem;
+      max-width: 95vw;
+    }
   }
 
   &__header {

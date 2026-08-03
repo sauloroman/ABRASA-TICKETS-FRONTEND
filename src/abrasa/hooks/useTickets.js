@@ -6,6 +6,7 @@ import {
   startGettingTicketById,
   startGettingTicketsOfEvent,
   startUpdatingTicket,
+  startCreatingBulkTickets,
 } from '../../store/abrasa/tickets/tickets.thunks';
 import {
   setPage,
@@ -20,6 +21,10 @@ export const useTickets = () => {
   const getAllTickets = () => {
     // dispatch( startGettingAllTickets() );
   }
+
+  const createBulkTickets = (bulkInformation = {}, config = {}) => {
+    dispatch(startCreatingBulkTickets(bulkInformation, config));
+  };
 
   const getTicketsByEvent = (config = {}) => {
     dispatch(startGettingTicketsOfEvent(config));
@@ -87,5 +92,6 @@ export const useTickets = () => {
     nextPage,
     prevPage,
     getTotalPages,
+    createBulkTickets
   };
 };

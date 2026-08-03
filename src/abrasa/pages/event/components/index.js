@@ -14,3 +14,4 @@ export * from './modal/ModalUploadEventPhoto.jsx';
 export * from './modal/ModalConfirm.jsx';
 export * from './modal/ModalUpdateTicket.jsx';
 export * from './modal/ModalConfirmDeleteTickets.jsx';
+export * from './modal/ModalImportExcel.jsx'
