@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useImportExcel } from '../../../../hooks/useImportExcel';
 import { useEvents, useTickets } from '../../../../hooks';
 import { useUI } from '../../../../../hooks';
@@ -6,6 +7,7 @@ export const ModalImportExcel = () => {
     const { event } = useEvents();
     const { createBulkTickets, page } = useTickets();
     const { closeModal } = useUI();
+    const [isImporting, setIsImporting] = useState(false);
 
     const {
         ticketsPreview,
@@ -14,10 +16,12 @@ export const ModalImportExcel = () => {
         handleFileUpload,
     } = useImportExcel();
 
-    const handleConfirmImport = () => {
-        if (ticketsPreview.length === 0) return;
+    const handleConfirmImport = async () => {
+        if (ticketsPreview.length === 0 || isImporting) return;
 
-        createBulkTickets(
+        setIsImporting(true);
+
+        const success = await createBulkTickets(
             {
                 event: event.id,
                 tickets: ticketsPreview,
@@ -29,18 +33,37 @@ export const ModalImportExcel = () => {
             }
         );
 
-        closeModal('eventPageModal');
+        setIsImporting(false);
+
+        if (success) {
+            closeModal('eventPageModal');
+        }
     };
 
+    if (isImporting) {
+        return (
+            <div className="modal-import-excel modal-import-excel--loading">
+                <div className="modal-import-excel__loader-icon-wrapper">
+                    <i className="bx bx-loader-alt bx-spin modal-import-excel__loader-icon"></i>
+                </div>
+                <h3 className="modal-import-excel__loading-title">
+                    Generando e importando {ticketsPreview.length} boletos...
+                </h3>
+                <p className="modal-import-excel__loading-desc">
+                    Por favor espera un momento. Estamos registrando los invitados, asignando claves de acceso de 5 dígitos y generando los códigos QR en Cloudinary.
+                </p>
+            </div>
+        );
+    }
+
     return (
-        <div style={{ padding: '1rem' }}>
-            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+        <div className="modal-import-excel">
+            <div className="modal-import-excel__upload-container">
                 <label
                     htmlFor="excel-upload"
-                    className="btn btn--outline"
-                    style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                    className="btn btn--outline modal-import-excel__file-label"
                 >
-                    <i className="bx bx-file-find" style={{ fontSize: '1.4rem' }}></i>
+                    <i className="bx bx-file-find modal-import-excel__icon-file"></i>
                     {fileName ? `Archivo: ${fileName}` : 'Seleccionar archivo Excel (.xlsx / .csv)'}
                 </label>
                 <input
@@ -48,57 +71,57 @@ export const ModalImportExcel = () => {
                     type="file"
                     accept=".xlsx, .xls, .csv"
                     onChange={handleFileUpload}
+                    className="modal-import-excel__file-input"
                     style={{ display: 'none' }}
                 />
             </div>
 
             {errorMsg && (
-                <div style={{ color: '#e74c3c', marginBottom: '1rem', textAlign: 'center', fontWeight: 'bold' }}>
+                <div className="modal-import-excel__error">
                     {errorMsg}
                 </div>
             )}
 
             {ticketsPreview.length > 0 && (
                 <>
-                    <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="modal-import-excel__header">
                         <span style={{ fontWeight: 'bold' }}>
-                            Boletos detectados: <mark style={{ background: '#e3f2fd', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>{ticketsPreview.length}</mark>
+                            Boletos detectados: <mark className="modal-import-excel__count-badge">{ticketsPreview.length}</mark>
                         </span>
                     </div>
 
-                    <div style={{ maxHeight: '420px', overflowY: 'auto', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '1.5rem' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                            <thead style={{ background: '#f5f5f5', position: 'sticky', top: 0 }}>
+                    <div className="modal-import-excel__table-wrapper">
+                        <table className="modal-import-excel__table">
+                            <thead>
                                 <tr>
-                                    <th style={{ padding: '8px', textAlign: 'left' }}>#</th>
-                                    <th style={{ padding: '8px', textAlign: 'left' }}>Nombre</th>
-                                    <th style={{ padding: '8px', textAlign: 'left' }}>Teléfono</th>
-                                    <th style={{ padding: '8px', textAlign: 'center' }}>Adultos</th>
-                                    <th style={{ padding: '8px', textAlign: 'center' }}>Niños</th>
-                                    <th style={{ padding: '8px', textAlign: 'left' }}>Mesas</th>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th className="modal-import-excel__table-th--center">Adultos</th>
+                                    <th className="modal-import-excel__table-th--center">Niños</th>
+                                    <th>Mesas</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {ticketsPreview.map((item, idx) => (
-                                    <tr key={idx} style={{ borderBottom: '1px solid #eee' }}>
-                                        <td style={{ padding: '8px' }}>{idx + 1}</td>
-                                        <td style={{ padding: '8px', fontWeight: '500' }}>{item.name}</td>
-                                        <td style={{ padding: '8px' }}>{item.phone || <em style={{ color: '#999' }}>Sin número</em>}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center' }}>{item.adultsQuantity}</td>
-                                        <td style={{ padding: '8px', textAlign: 'center' }}>{item.kidsQuantity}</td>
-                                        <td style={{ padding: '8px' }}>{item.table}</td>
+                                    <tr key={idx}>
+                                        <td>{idx + 1}</td>
+                                        <td className="modal-import-excel__table-td--name">{item.name}</td>
+                                        <td>{item.phone || <em className="modal-import-excel__no-phone">Sin número</em>}</td>
+                                        <td className="modal-import-excel__table-td--center">{item.adultsQuantity}</td>
+                                        <td className="modal-import-excel__table-td--center">{item.kidsQuantity}</td>
+                                        <td>{item.table}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
 
-                    <div style={{ textAlign: 'right' }}>
+                    <div className="modal-import-excel__actions">
                         <button
                             type="button"
                             onClick={handleConfirmImport}
-                            className="btn btn--primary"
-                            style={{ width: '100%' }}
+                            className="btn btn--secondary modal-import-excel__submit-btn"
                         >
                             <i className="bx bx-cloud-upload"></i> Importar {ticketsPreview.length} Boletos
                         </button>

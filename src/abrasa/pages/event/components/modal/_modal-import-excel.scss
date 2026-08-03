@@ -1,0 +1,152 @@
+@use '../../../../../../scss/abstracts/variables' as v;
+@use '../../../../../../scss/abstracts/mixins' as m;
+
+.modal-import-excel {
+    padding: 1rem;
+
+    &__upload-container {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__file-label {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    &__icon-file {
+        font-size: 1.4rem;
+    }
+
+    &__file-input {
+        display: none !important;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        left: -9999px;
+    }
+
+    &__error {
+        color: v.$color-red;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &__header {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__count-badge {
+        background-color: v.$color-grey-light-2;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    &__table-wrapper {
+        max-height: 420px;
+        overflow-y: auto;
+        border: 1px solid v.$color-grey-light-3;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+
+        thead {
+            background-color: v.$color-grey-light-1;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+
+            th {
+                padding: 8px;
+                text-align: left;
+
+                &--center {
+                    text-align: center;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid v.$color-grey-light-2;
+            }
+
+            td {
+                padding: 8px;
+
+                &--center {
+                    text-align: center;
+                }
+
+                &--name {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    &__no-phone {
+        color: v.$color-grey-dark-2;
+        font-style: italic;
+    }
+
+    &__actions {
+        text-align: center;
+    }
+
+    &__submit-btn {
+        width: 100%;
+        max-width: 350px;
+
+        @include m.responsiveDesign('phone') {
+            width: 100%;
+        }
+    }
+
+    // Loader state
+    &--loading {
+        padding: 3.5rem 1.5rem;
+        text-align: center;
+    }
+
+    &__loader-icon-wrapper {
+        margin-bottom: 1.5rem;
+    }
+
+    &__loader-icon {
+        font-size: 4.5rem;
+        color: v.$color-primary;
+    }
+
+    &__loading-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: v.$color-black;
+        margin-bottom: 0.8rem;
+    }
+
+    &__loading-desc {
+        font-size: 1rem;
+        color: v.$color-grey-dark-1;
+        max-width: 480px;
+        margin: 0 auto 2rem;
+        line-height: 1.5;
+    }
+}

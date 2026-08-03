@@ -23,7 +23,7 @@ export const useTickets = () => {
   }
 
   const createBulkTickets = (bulkInformation = {}, config = {}) => {
-    dispatch(startCreatingBulkTickets(bulkInformation, config));
+    return dispatch(startCreatingBulkTickets(bulkInformation, config));
   };
 
   const getTicketsByEvent = (config = {}) => {
