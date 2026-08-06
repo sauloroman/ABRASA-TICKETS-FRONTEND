@@ -3,6 +3,7 @@ import {
   startGettingTicketById,
   startUpdatingScannedTicket,
 } from '../../store/abrasa/tickets/tickets.thunks';
+import { setTicketTarget } from '../../store/abrasa/tickets/tickets.slice';
 
 export const useScanTicket = () => {
   const dispatch = useDispatch();
@@ -13,12 +14,17 @@ export const useScanTicket = () => {
   };
 
   const updateTicketScanned = (ticketID = '', ticketInformation = {}) => {
-    dispatch(startUpdatingScannedTicket(ticketID, ticketInformation));
+    return dispatch(startUpdatingScannedTicket(ticketID, ticketInformation));
   };
+
+  const resetTicketScanned = () => {
+    dispatch(setTicketTarget({}))
+  }
 
   return {
     ticketScanned: ticketTarget,
     getTicketScanned,
     updateTicketScanned,
+    resetTicketScanned
   };
 };

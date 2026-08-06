@@ -9,6 +9,10 @@ export const EventButtons = () => {
   const { openModal } = useUI();
   const { user } = useAuthentication();
 
+  const onOpenProjectionWindow = () => {
+    window.open('/welcome/live', 'WelcomeProjectionScreen');
+  };
+
   return (
     <div className="event-buttons">
       {user?.role !== 'Cliente' && (
@@ -55,6 +59,13 @@ export const EventButtons = () => {
             Importar Excel
           </button>
         )}
+        <button
+          onClick={onOpenProjectionWindow}
+          className="btn btn--outline event-buttons__button"
+        >
+          <i className="bx bx-tv event-buttons__icon"></i>
+          Proyectar Bienvenida
+        </button>
       </div>
     </div>
   );

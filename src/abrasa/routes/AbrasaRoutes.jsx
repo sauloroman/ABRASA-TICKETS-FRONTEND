@@ -7,6 +7,7 @@ import {
   ProfilePage,
   ScanTicketPage,
   StadisticsPage,
+  WelcomeTicketPage,
 } from '../pages';
 
 export const AbrasaRoutes = () => {
@@ -30,6 +31,7 @@ export const AbrasaRoutes = () => {
       <Route path="event-confirmations/:id" element={<EventConfirmationPage />} />
       <Route path="stadistics" element={<StadisticsPage />} />
       <Route path="scanTicket/:id" element={<ScanTicketPage />} />
+      <Route path="welcome/:id" element={<WelcomeTicketPage />} />
       <Route path="/*" element={<Navigate to={lastPath} />} />
     </Routes>
   );

@@ -38,10 +38,15 @@ export const ScanTicketForm = () => {
 
     if (!isFormValid) return;
 
-    updateTicketScanned(ticketScanned.id, formState);
+    const success = updateTicketScanned(ticketScanned.id, formState);
+
+    if (success) {
+      const channel = new BroadcastChannel('abrasa_welcome_projection')
+      channel.postMessage({ action: 'reset' })
+      channel.close()
+    }
 
     onResetForm();
-
     setFormSubmitted(false);
   };
 
@@ -75,9 +80,8 @@ export const ScanTicketForm = () => {
             placeholder="Ingresa la cantidad de adultos a descontar del boleto"
           />
           <span
-            className={`form__span ${
-              !isFormValid && formSubmitted ? 'text-wrong' : null
-            }`}
+            className={`form__span ${!isFormValid && formSubmitted ? 'text-wrong' : null
+              }`}
           >
             {adultsDiscountValid}
           </span>
@@ -96,9 +100,8 @@ export const ScanTicketForm = () => {
             placeholder="Ingresa la cantidad de niños a descontar del boleto"
           />
           <span
-            className={`form__span ${
-              !isFormValid && formSubmitted ? 'text-wrong' : null
-            }`}
+            className={`form__span ${!isFormValid && formSubmitted ? 'text-wrong' : null
+              }`}
           >
             {kidsDiscountValid}
           </span>
