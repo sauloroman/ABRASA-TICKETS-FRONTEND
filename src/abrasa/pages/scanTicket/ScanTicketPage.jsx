@@ -26,8 +26,8 @@ export const ScanTicketPage = () => {
           </button>
         </header>
         <div className="scanTicket__grid">
-          <ScanTicketInfo />
           <ScanTicketForm />
+          <ScanTicketInfo />
         </div>
       </div>
     </LayoutAbrasa>

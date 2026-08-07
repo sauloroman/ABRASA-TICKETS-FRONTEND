@@ -8,7 +8,6 @@ export const ScanTicketInfo = () => {
     name,
     adultsQuantity = 0,
     kidsQuantity = 0,
-    qrCode,
     phone,
     adultsCounter = 0,
     kidsCounter = 0,
@@ -38,14 +37,6 @@ export const ScanTicketInfo = () => {
             : 'BOLETO AGOTADO - SIN PASES RESTANTES'}
         </span>
       </div>
-
-      <figure className="scanTicket-info__figure">
-        <img
-          className="scanTicket-info__image"
-          src={qrCode}
-          alt="Qr Code Ticket"
-        />
-      </figure>
 
       <div className="scanTicket-info__content">
         <header className="scanTicket-info__header">
@@ -78,13 +69,13 @@ export const ScanTicketInfo = () => {
           <div className="scanTicket-info__quantity">
             <p>Adultos Disponibles</p>
             <span className={adultsAvailable > 0 ? 'badge-green' : 'badge-red'}>
-              {adultsAvailable} de {adultsQuantity}
+              {adultsAvailable}
             </span>
           </div>
           <div className="scanTicket-info__quantity">
             <p>Niños Disponibles</p>
             <span className={kidsAvailable > 0 ? 'badge-green' : 'badge-red'}>
-              {kidsAvailable} de {kidsQuantity}
+              {kidsAvailable}
             </span>
           </div>
         </div>

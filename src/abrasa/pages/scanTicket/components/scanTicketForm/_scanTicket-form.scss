@@ -44,3 +44,18 @@
     }
   }
 }
+
+.scanTicket-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  input {
+    padding: 5rem 2rem;
+    font-size: 3.2rem;
+  }
+
+  input::placeholder {
+    font-size: 6.4rem;
+  }
+}

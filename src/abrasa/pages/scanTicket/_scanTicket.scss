@@ -12,6 +12,7 @@
 
   &__header {
     margin-bottom: 2rem;
+
     @include m.responsiveDesign('phone') {
       display: flex;
       justify-content: center;
@@ -21,6 +22,7 @@
   &__return {
     max-width: 20rem;
     font-size: 1.4rem;
+
     @include m.responsiveDesign('phone') {
       max-width: 30rem;
       font-size: 1.6rem;
@@ -29,15 +31,17 @@
 
   &__grid {
     @include m.gridLayout('none', calc(v.$gap * 2), 3);
+
     @include m.responsiveDesign('phone') {
       display: flex;
       flex-direction: column-reverse;
       width: 95%;
       margin: 0 auto;
     }
+
     place-items: unset;
 
-    & > div {
+    &>div {
       width: 100%;
       border: v.$border-df;
       padding: calc(v.$gap * 2);
