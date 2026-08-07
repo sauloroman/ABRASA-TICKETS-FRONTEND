@@ -30,6 +30,14 @@ export const EventStats = () => {
             <p className="event-stats__stat">Total: <span>{totalAdultsCounter + totalKidsCounter}</span></p>
           </div>
         </div>
+        <div className="event-stats__box">
+          <h3 className="event-stats__subtitle">Faltan</h3>
+          <div className="event-stats__info">
+            <p className="event-stats__stat">Adultos: <span>{totalAdults - totalAdultsCounter}</span></p>
+            <p className="event-stats__stat">Niños: <span>{totalKids - totalKidsCounter}</span></p>
+            <p className="event-stats__stat">Total: <span>{totalKids + totalAdults - totalAdultsCounter - totalKidsCounter}</span></p>
+          </div>
+        </div>
       </div>
     </div>
   )
