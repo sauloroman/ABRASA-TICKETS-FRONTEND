@@ -7,6 +7,8 @@ import {
   startGettingTicketsOfEvent,
   startUpdatingTicket,
   startCreatingBulkTickets,
+  startSendingWhatsAppTicket,
+  startSendingBulkWhatsAppTickets,
 } from '../../store/abrasa/tickets/tickets.thunks';
 import {
   setPage,
@@ -55,6 +57,14 @@ export const useTickets = () => {
     dispatch(startUpdatingTicket(ticketID, newTicketInformation, config));
   };
 
+  const sendWhatsAppTicket = (ticketId = '') => {
+    dispatch(startSendingWhatsAppTicket(ticketId));
+  }
+
+  const sendBulkWhatsAppTickets = (eventId = '') => {
+    dispatch(startSendingBulkWhatsAppTickets(eventId));
+  }
+
   const nextPage = () => {
     dispatch(setPage(page + 1));
   };
@@ -92,6 +102,8 @@ export const useTickets = () => {
     nextPage,
     prevPage,
     getTotalPages,
-    createBulkTickets
+    createBulkTickets,
+    sendWhatsAppTicket,
+    sendBulkWhatsAppTickets
   };
 };

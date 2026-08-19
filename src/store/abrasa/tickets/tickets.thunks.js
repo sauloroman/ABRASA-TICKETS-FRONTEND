@@ -34,6 +34,73 @@ import {
 //   }
 // }
 
+export const startSendingWhatsAppTicket = (ticketID = '') => {
+  return async (dispatch) => {
+    dispatch(setIsLoading(true));
+    try {
+      const {data} = await abrasaApi.post(`/tickets/${ticketID}/send-whatsapp`)    
+      
+      dispatch(setAlert({
+        isAlertOpen: true,
+        contentAlert: data.msg || 'Boleto enviado por WhatsApp Exitosamente',
+        type: 'success',
+        link: { isLink: false, path: ''}
+      }))
+
+      return true
+
+    } catch(error) {
+      console.log(error);
+      const errorMessage = error?.response?.data?.error || 'Error al enviar el boleto por WhatsApp';
+      dispatch(
+        setAlert({
+          isAlertOpen: true,
+          contentAlert: errorMessage,
+          type: 'error',
+          link: { isLink: false, path: '' },
+        })
+      );
+      return false;
+    } finally{
+      dispatch(setIsLoading(false));
+    }
+  } 
+}
+
+export const startSendingBulkWhatsAppTickets = (eventId = '') => {
+  return async ( dispatch ) => {
+    dispatch(setIsLoading(true));
+    try {
+
+      const {data} = await abrasaApi.post(`/tickets/event/${eventId}/send-whatsapp-bulk`)
+
+      dispatch(setAlert({
+        isAlertOpen: true,
+        contentAlert: data.msg || 'Envío masivo por WhatsApp finalizado',
+        type: 'success',
+        link: { isLink: false, path: '' },
+      }))
+
+      return true
+
+    } catch(error) {
+      console.log(error);
+      const errorMessage = error?.response?.data?.error || 'Error en el envío masivo por WhatsApp';
+      dispatch(
+        setAlert({
+          isAlertOpen: true,
+          contentAlert: errorMessage,
+          type: 'error',
+          link: { isLink: false, path: '' },
+        })
+      );
+      return false
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  }
+}
+
 export const startCreatingBulkTickets = (
   bulkInformation = {},
   { eventID = '', page: pageUser = 1, limit: limitUser = 30 }

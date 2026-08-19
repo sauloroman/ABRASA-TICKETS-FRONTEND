@@ -1,17 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useEvents, useTickets } from '../../../../hooks';
+import { useTickets } from '../../../../hooks';
 import { EventButtons, EventPagination } from '../';
 import { useUI } from '../../../../../hooks';
 import { useAuthentication } from '../../../../../auth/hooks';
 
 export const EventTable = () => {
   const { id } = useParams();
-  const { tickets, getTicketsByEvent, isLoading, total, page } = useTickets();
+
+  const {
+    tickets,
+    isLoading,
+    total,
+    page,
+
+    getTicketsByEvent,
+    sendBulkWhatsAppTickets,
+    sendWhatsAppTicket
+  } = useTickets();
+
   const { openModal } = useUI();
-  const { event } = useEvents();
   const { user } = useAuthentication();
   const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSendBulkWhatsApp = () => {
+    if (!id) return
+    if (window.confirm('¿Deseas enviar los boleots por WhatsApp de forma masiva a TODOS los asistentes de este evento?')) {
+      sendBulkWhatsAppTickets(id)
+    }
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,6 +61,29 @@ export const EventTable = () => {
             estado de cada boleto.
           </p>
         </div>
+
+        {user?.role !== 'Cliente' && (
+          <button
+            onClick={handleSendBulkWhatsApp}
+            disabled={!tickets.length}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              backgroundColor: '#25D366',
+              border: 'none',
+              color: '#ffffff',
+              fontWeight: '600',
+              padding: '10px 18px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)',
+              fontSize: '14px'
+            }}
+          >
+            <i className="bx bxl-whatsapp" style={{ fontSize: '20px' }}></i> Enviar Todos los Boletos (Masivo)
+          </button>
+        )}
       </header>
 
       {/* Prominent High-Visibility Search Hero Bar */}
@@ -103,15 +143,13 @@ export const EventTable = () => {
                 <td className="event-table__td">{ticket.table}</td>
                 <td className="event-table__td">{ticket.keyPass}</td>
                 <td className="event-table__td ">
-                  <a
-                    className='event-table__tlink'
-                    target='_blank'
-                    href={`https://wa.me/52${ticket.phone}?text=Hola ${ticket.name}. El equipo de ${event?.client || 'ServiChefs'} te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event.eventDate}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event.invitation} %0A🔑Clave de acceso: ${ticket.keyPass} %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.`}>
-                    <i
-                      title="Enviar Boleto"
-                      className="bx bx-send  event-table__ticon"
-                    ></i>
-                  </a>
+
+                  <i
+                    onClick={() => sendWhatsAppTicket(ticket.id)}
+                    title="Enviar Boleto"
+                    className="bx bx-send  event-table__ticon"
+                  ></i>
+
                   {user?.role !== 'Cliente' && (
                     <>
                       <i
