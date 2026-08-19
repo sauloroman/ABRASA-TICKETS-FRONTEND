@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTickets } from '../../../../hooks';
+import { useEvents, useTickets } from '../../../../hooks';
 import { EventButtons, EventPagination } from '../';
 import { useUI } from '../../../../../hooks';
 import { useAuthentication } from '../../../../../auth/hooks';
@@ -15,20 +15,17 @@ export const EventTable = () => {
     page,
 
     getTicketsByEvent,
-    sendBulkWhatsAppTickets,
-    sendWhatsAppTicket
   } = useTickets();
 
   const { openModal } = useUI();
+  const { event } = useEvents();
   const { user } = useAuthentication();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSendBulkWhatsApp = () => {
-    if (!id) return
-    if (window.confirm('¿Deseas enviar los boleots por WhatsApp de forma masiva a TODOS los asistentes de este evento?')) {
-      sendBulkWhatsAppTickets(id)
-    }
-  }
+    if (!id) return;
+    openModal('confirmModal', 'sendBulkWhatsApp', id);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -144,11 +141,16 @@ export const EventTable = () => {
                 <td className="event-table__td">{ticket.keyPass}</td>
                 <td className="event-table__td ">
 
-                  <i
-                    onClick={() => sendWhatsAppTicket(ticket.id)}
-                    title="Enviar Boleto"
-                    className="bx bx-send  event-table__ticon"
-                  ></i>
+                  <a
+                    className='event-table__tlink'
+                    target='_blank'
+                    rel="noreferrer"
+                    href={`https://wa.me/52${ticket.phone}?text=Hola ${ticket.name}. El equipo de ${event?.client || 'Atelier Eventos'} te saluda cordialmente 🔥.Queremos mandarte tu invitación web para tu próximo evento el ${event?.eventDate || ''}. Compártela únicamente con tus invitados y reserva tu esperada fecha. %0A%0A🌐Invitación web: ${event?.invitation || ''} %0A🔑Clave de acceso: ${ticket.keyPass} %0A%0A Nota: No compartas esta clave con nadie más pues tus boletos electrónicos pueden ser clonados. Presenta tus boletos el día de tu evento y listo 🔥.`}>
+                    <i
+                      title="Enviar Boleto (WhatsApp)"
+                      className="bx bx-send event-table__ticon"
+                    ></i>
+                  </a>
 
                   {user?.role !== 'Cliente' && (
                     <>

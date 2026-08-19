@@ -1,4 +1,4 @@
-export * from './eventCover/EventCover';
+﻿export * from './eventCover/EventCover';
 export * from './eventInformation/EventInformation';
 export * from './eventTickets/EventTickets.jsx';
 export * from './eventTable/EventTable.jsx';
@@ -14,4 +14,5 @@ export * from './modal/ModalUploadEventPhoto.jsx';
 export * from './modal/ModalConfirm.jsx';
 export * from './modal/ModalUpdateTicket.jsx';
 export * from './modal/ModalConfirmDeleteTickets.jsx';
-export * from './modal/ModalImportExcel.jsx'
+export * from './modal/ModalConfirmSendBulkWhatsApp.jsx';
+export * from './modal/ModalImportExcel.jsx';

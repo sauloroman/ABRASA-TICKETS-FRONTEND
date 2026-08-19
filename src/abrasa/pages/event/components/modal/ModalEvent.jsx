@@ -1,4 +1,4 @@
-import { useUI } from '../../../../../hooks';
+﻿import { useUI } from '../../../../../hooks';
 import { LayoutModal } from '../../../../layout/modal/LayoutModal';
 import {
   ModalCreateTicket,
@@ -8,6 +8,7 @@ import {
   ModalConfirm,
   ModalUpdateTicket,
   ModalConfirmDeleteTickets,
+  ModalConfirmSendBulkWhatsApp,
   ModalImportExcel
 } from '../';
 
@@ -22,7 +23,12 @@ export const ModalEvent = () => {
 
   if (confirmModal.isOpen) {
     nameModal = 'confirmModal';
-    modalTitle = 'Eliminar Boleto';
+    modalTitle =
+      confirmModal.selectedModal === 'sendBulkWhatsApp'
+        ? 'Enviar Boletos por WhatsApp'
+        : confirmModal.selectedModal === 'deleteTickets'
+          ? 'Eliminar Todos los Boletos'
+          : 'Eliminar Boleto';
   } else {
     nameModal = 'eventPageModal';
     modalTitle =
@@ -50,6 +56,9 @@ export const ModalEvent = () => {
       {confirmModal.selectedModal === 'deleteTicket' && <ModalConfirm />}
       {confirmModal.selectedModal === 'deleteTickets' && (
         <ModalConfirmDeleteTickets />
+      )}
+      {confirmModal.selectedModal === 'sendBulkWhatsApp' && (
+        <ModalConfirmSendBulkWhatsApp />
       )}
     </LayoutModal>
   );
